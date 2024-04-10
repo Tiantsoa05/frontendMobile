@@ -1,21 +1,92 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import Accueil from './components/Accueil';
+import Panier from './components/Panier';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import Liste from './components/Liste';
+import Payement from "./components/Payement";
 
+const Tab = createBottomTabNavigator()
+
+function Tabs() {
+  return <Tab.Navigator
+    screenOptions={
+      ({ route }) => (
+        {
+          tabBarActiveTintColor: 'grey',
+          tabBarInactiveTintColor: 'black',
+          labelStyle: { fontSize: 18 },
+          headerShown: false,
+          tabBarStyle: {
+            height: 50,
+            paddingHorizontal: 5,
+            paddingTop: 0,
+            backgroundColor:"white"
+          },
+          tabBarIcon: ({ focused, size, color }) => {
+            let iconName;
+            color = focused ? "#5665ff" : "black"
+            switch(route.name){
+              case "Home":{
+                iconName = "home"
+                break
+              }
+              case "Commandes":{
+                iconName = "shopify"
+                break
+              }
+              case "Liste":{
+                iconName = "shopify"
+                break
+              }
+              case "Payement":{
+                iconName = "credit-card"
+                break
+              }
+              case "Panier":{
+                iconName = "shopping-cart"
+                break
+              }
+              
+            }
+            return (
+              <FontAwesome5
+                name={iconName}
+                size={24}
+                color={color}
+              />
+            )
+          }
+        }
+      )
+    }
+  >
+
+    <Tab.Screen
+      name='Home'
+      component={Accueil}
+    />
+    <Tab.Screen
+      name='Liste'
+      component={Liste}
+    />
+    <Tab.Screen
+      name='Panier'
+      component={Panier}
+      options={{ tabBarBadge: 4 }}
+    />
+    <Tab.Screen
+      name='Payement'
+      component={Payement}
+    />
+  </Tab.Navigator>
+}
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tabs />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

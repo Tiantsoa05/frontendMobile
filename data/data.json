@@ -1,0 +1,52 @@
+[
+    {
+        "id": "1",
+        "libelle": "Yaourt à boire",
+        "prix": "500"
+    },
+    {
+        "id": "2",
+        "libelle": "Yaourt congelé",
+        "prix": "600"
+    },
+    {
+        "id": "3",
+        "libelle": "Yaourt à manger",
+        "prix": "800"
+    },
+    {
+        "id": "4",
+        "libelle": "Yaourt à manger",
+        "prix": "800"
+    },
+    {
+        "id": "5",
+        "libelle": "Yaourt à manger",
+        "prix": "800"
+    },
+    {
+        "id": "6",
+        "libelle": "Yaourt à manger",
+        "prix": "800"
+    },
+    {
+        "id": "7",
+        "libelle": "Yaourt à manger",
+        "prix": "800"
+    },
+    {
+        "id": "8",
+        "libelle": "Yaourt à manger",
+        "prix": "800"
+    },
+    {
+        "id": "9",
+        "libelle": "Yaourt à manger",
+        "prix": "800"
+    },
+    {
+        "id": "10",
+        "libelle": "Yaourt à manger",
+        "prix": "800"
+    }
+]
