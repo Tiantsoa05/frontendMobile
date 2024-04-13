@@ -1,55 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, Text, View, StyleSheet, ScrollView, Image } from "react-native";
 import Header from "./Header/Header";
 
 export default function Accueil({ navigation }) {
 
-    const handlePress = () => {
-        alert('Hello')
-    }
+    const [categories, setCategories] = useState([])
+
+    useEffect(function () {
+        fetch('http://localhost:3000/api/categories/all')
+            .then(response => {
+                setCategories(response.data)
+            })
+            .catch(error => alert(error))
+    }, [])
+
     return (
         <View>
             <Header />
 
-            <Pressable
-                onPress={handlePress}
-            >
-                <Text style={styles.title}>Catégories</Text>
-            </Pressable>
             <View style={styles.categories}>
                 <ScrollView overScrollMode="never" style={styles.scrollContainer}>
-                    <View style={styles.categorie}>
-                        <View style={styles.image}>
-                            <Image source={require("../assets/cmd.png")} style={styles.picture} />
-                        </View>
-                        <View style={styles.description}>
-                            <Text style={styles.desc}>Lorem ipsum dolor sit amet consectetur</Text>
-                        </View>
-                    </View>
-                    <View style={styles.categorie}>
-                        <View style={styles.image}>
-                            <Image source={require("../assets/cmd.png")} style={styles.picture} />
-                        </View>
-                        <View style={styles.description}>
-                            <Text style={styles.desc}>Lorem ipsum dolor sit amet consectetur</Text>
-                        </View>
-                    </View>
-                    <View style={styles.categorie}>
-                        <View style={styles.image}>
-                            <Image source={require("../assets/cmd.png")} style={styles.picture} />
-                        </View>
-                        <View style={styles.description}>
-                            <Text style={styles.desc}>Lorem ipsum dolor sit amet consectetur</Text>
-                        </View>
-                    </View>
-                    <View style={styles.categorie}>
-                        <View style={styles.image}>
-                            <Image source={require("../assets/cmd.png")} style={styles.picture} />
-                        </View>
-                        <View style={styles.description}>
-                            <Text style={styles.desc}>Lorem ipsum dolor sit amet consectetur</Text>
-                        </View>
-                    </View>
+                    {
+                        categories.map(categorie => {
+                            return <View style={styles.categorie}>
+                                <View style={styles.image}>
+                                    <Image source={require(`../assets/images/${categorie.Nom_categorie}.png`)} style={styles.picture} />
+                                </View>
+                                <View style={styles.description}>
+                                    <Text style={styles.desc}>{categorie.Nom_categorie}</Text>
+                                </View>
+                            </View>
+                        })
+                    }
                 </ScrollView>
             </View>
         </View>
