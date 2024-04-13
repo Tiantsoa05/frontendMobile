@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, Text, View, StyleSheet, ScrollView, Image } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
 import Header from "./Header/Header";
+import { IP_ADDRESS } from "../config/config";
 
-export default function Accueil({ navigation }) {
+export default function Accueil() {
 
     const [categories, setCategories] = useState([])
 
     useEffect(function () {
-        fetch('http://localhost:3000/api/categories/all')
+        fetch(`http://${IP_ADDRESS}:3000/api/categories/all`)
             .then(response => {
                 setCategories(response.data)
             })
