@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
 import Header from "./Header/Header";
 import { IP_ADDRESS } from "../config/config";
 
-export default function Accueil() {
+export default function Accueil({navigation}) {
 
     const [categories, setCategories] = useState([])
 
@@ -15,6 +15,10 @@ export default function Accueil() {
             .catch(error => alert(error))
     }, [])
 
+    const selectCategory = () => {
+        navigation.navigate("Liste")
+    }
+
     return (
         <View>
             <Header />
@@ -23,7 +27,7 @@ export default function Accueil() {
                 <ScrollView overScrollMode="never" style={styles.scrollContainer}>
                     {
                         categories.map(categorie => {
-                            return <View style={styles.categorie}>
+                            return <View style={styles.categorie} onPress={selectCategory(categorie)}>
                                 <View style={styles.image}>
                                     <Image source={require(`../assets/images/${categorie.Nom_categorie}.png`)} style={styles.picture} />
                                 </View>
