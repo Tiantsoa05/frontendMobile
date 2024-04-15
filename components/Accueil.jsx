@@ -16,7 +16,12 @@ export default function Accueil({navigation}) {
     }, [])
 
     const selectCategory = () => {
-        navigation.navigate("Liste")
+        navigation.emit(
+            {
+                type:"tabPress",
+                target:"Liste"
+            }
+        )
     }
 
     return (
@@ -27,7 +32,7 @@ export default function Accueil({navigation}) {
                 <ScrollView overScrollMode="never" style={styles.scrollContainer}>
                     {
                         categories.map(categorie => {
-                            return <View style={styles.categorie} onPress={selectCategory(categorie)}>
+                            return <View style={styles.categorie} onPress={() => selectCategory(categorie)}>
                                 <View style={styles.image}>
                                     <Image source={require("../assets/images/"+categorie.Nom_categorie+".png")} style={styles.picture} />
                                 </View>
