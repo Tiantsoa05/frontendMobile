@@ -29,7 +29,7 @@ export default function Accueil({navigation}) {
                         categories.map(categorie => {
                             return <View style={styles.categorie} onPress={selectCategory(categorie)}>
                                 <View style={styles.image}>
-                                    <Image source={require(`../assets/images/${categorie.Nom_categorie}.png`)} style={styles.picture} />
+                                    <Image source={require("../assets/images/"+categorie.Nom_categorie+".png")} style={styles.picture} />
                                 </View>
                                 <View style={styles.description}>
                                     <Text style={styles.desc}>{categorie.Nom_categorie}</Text>
