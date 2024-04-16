@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, ScrollView, Image, FlatList } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image, FlatList, TouchableOpacity } from "react-native";
 import Header from "./Header/Header";
 import { IP_ADDRESS } from "../config/config";
+import { useDispatch } from "react-redux";
+import { chooseCategory } from "../store/CartReducer";
 
 export default function Accueil({ navigation }) {
 
     const [categories, setCategories] = useState([])
+    const dispatch = useDispatch()
 
     useEffect(function () {
         fetch("http://192.168.56.1:3000/api/categories/all")
@@ -14,6 +17,7 @@ export default function Accueil({ navigation }) {
     }, [])
 
     const selectCategory = (categorie) => {
+        dispatch(chooseCategory(categorie))
         navigation.navigate("Liste")
     }
 
@@ -25,15 +29,16 @@ export default function Accueil({ navigation }) {
                 <ScrollView overScrollMode="never" style={styles.scrollContainer}>
                     {
                         categories.map((categorie) => {
-                            console.log(categorie)
-                            return <View style={styles.categorie} key={categorie.id_categorie} onPress={() => selectCategory(categorie)}>
-                                <View style={styles.image}>
-                                    <Image source={"../assets/images/" + categorie.Nom_categorie + ".png"} style={styles.picture} />
+                            return <TouchableOpacity key={categorie.id_categorie} onPress={() => selectCategory(categorie.Nom_categorie)}>
+                                <View style={styles.categorie}>
+                                    <View style={styles.image}>
+                                        {/* <Image source={require(`../assets/images/${categorie.Nom_categorie}.png`)} style={styles.picture} /> */}
+                                    </View>
+                                    <View style={styles.description}>
+                                        <Text style={styles.desc}>{categorie.Nom_categorie}</Text>
+                                    </View>
                                 </View>
-                                <View style={styles.description}>
-                                    <Text style={styles.desc}>{categorie.Nom_categorie}</Text>
-                                </View>
-                            </View>
+                            </TouchableOpacity>
                         })
                     }
                 </ScrollView>

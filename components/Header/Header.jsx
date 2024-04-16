@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 export default function Header() {
     return <View style={styles.header}>
         <View style={styles.logoContainer}>
-            <Image source={require('../../assets/cmd.png')} style={styles.logo} />
+            {/* <Image source={require('../../assets/cmd.png')} style={styles.logo} /> */}
         </View>
         <View style={styles.titleContainer}>
             <Text>Contacts</Text>
