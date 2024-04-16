@@ -6,10 +6,14 @@ import Panier from './components/Panier';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import Liste from './components/Liste';
 import Payement from "./components/Payement";
+import { Provider, useSelector } from "react-redux"
+import { cartStore } from './store/CartReducer';
 
 const Tab = createBottomTabNavigator()
 
 function Tabs() {
+
+  const notifsCart = useSelector(state => state.cartSize)
   return <Tab.Navigator
     screenOptions={
       ({ route }) => (
@@ -22,33 +26,33 @@ function Tabs() {
             height: 50,
             paddingHorizontal: 5,
             paddingTop: 0,
-            backgroundColor:"white"
+            backgroundColor: "white"
           },
           tabBarIcon: ({ focused, size, color }) => {
             let iconName;
             color = focused ? "#5665ff" : "black"
-            switch(route.name){
-              case "Home":{
+            switch (route.name) {
+              case "Home": {
                 iconName = "home"
                 break
               }
-              case "Commandes":{
+              case "Commandes": {
                 iconName = "shopify"
                 break
               }
-              case "Liste":{
+              case "Liste": {
                 iconName = "shopify"
                 break
               }
-              case "Payement":{
+              case "Payement": {
                 iconName = "credit-card"
                 break
               }
-              case "Panier":{
+              case "Panier": {
                 iconName = "shopping-cart"
                 break
               }
-              
+
             }
             return (
               <FontAwesome5
@@ -74,7 +78,7 @@ function Tabs() {
     <Tab.Screen
       name='Panier'
       component={Panier}
-      options={{ tabBarBadge: 4 }}
+      options={{ tabBarBadge: notifsCart }}
     />
     <Tab.Screen
       name='Payement'
@@ -85,7 +89,9 @@ function Tabs() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Tabs />
+      <Provider store={cartStore}>
+        <Tabs />
+      </Provider>
     </NavigationContainer>
   );
 }
