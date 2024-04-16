@@ -78,7 +78,7 @@ function Tabs() {
     <Tab.Screen
       name='Panier'
       component={Panier}
-      options={{ tabBarBadge: notifsCart }}
+      options={(notifsCart > 0) && { tabBarBadge: notifsCart }}
     />
     <Tab.Screen
       name='Payement'
@@ -88,11 +88,11 @@ function Tabs() {
 }
 export default function App() {
   return (
-    <NavigationContainer>
-      <Provider store={cartStore}>
+    <Provider store={cartStore}>
+      <NavigationContainer>
         <Tabs />
-      </Provider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
