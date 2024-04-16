@@ -5,7 +5,7 @@ import Header from "./Header/Header";
 import ConfirmButton from "./Buttons/ConfirmButton";
 import CancelButton from "./Buttons/CancelButton";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { removeFromCart } from "../store/CartReducer";
 
 export default function Panier() {
@@ -40,7 +40,7 @@ export default function Panier() {
         <Header />
         <Text style={styles.title}>Panier</Text>
         {
-            data.length > 0 ?
+            data.length > 1 ?
                 <ScrollView style={{ width: "100%", padding: 2 }}>
                     {
                         data.map(item => {
