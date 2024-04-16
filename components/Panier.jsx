@@ -5,27 +5,35 @@ import Header from "./Header/Header";
 import ConfirmButton from "./Buttons/ConfirmButton";
 import CancelButton from "./Buttons/CancelButton";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import {useDispatch, useSelector} from "react-redux"
+import { removeFromCart } from "../store/CartReducer";
 
-export default function Panier({ panier }) {
+export default function Panier() {
 
-    const [data, setData] = useState([
-        {
-            id: 1,
-            libelle: "C'est de la merde monumentale cette application"
-        },
-        {
-            id: 2,
-            libelle: "Achat 2"
-        },
-        {
-            id: 3,
-            libelle: "Achat 3"
-        }
-    ])
+    // const [data, setData] = useState([
+    //     {
+    //         id: 1,
+    //         libelle: "C'est de la merde monumentale cette application"
+    //     },
+    //     {
+    //         id: 2,
+    //         libelle: "Achat 2"
+    //     },
+    //     {
+    //         id: 3,
+    //         libelle: "Achat 3"
+    //     }
+    // ])
 
+
+    // get store initial state
+    const data = useSelector(state => state.products)
+
+    // initialiser les actions du store
+    const dispacth = useDispatch()
 
     const deleteItem = function (item) {
-        setData(data.filter(i => i.id !== item.id))
+        dispacth(removeFromCart(item.libelle))
     }
 
     return <View style={styles.container}>

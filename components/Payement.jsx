@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import ConfirmButton from "./Buttons/ConfirmButton";
+import { useSelector } from "react-redux";
 
 
 export default function Payement() {
-    const [data, setData] = useState('')
+
+    const [nomClient, setNomClient] = useState('')
+    const [addresse,setAddresse] = useState('')
+    const [numCarte,setNumCarte] =useState('')
+
+    const prix = useSelector(state => state.totalPrice)
 
     return <View style={styles.formContainer}>
         <Text style={styles.title}>Paiement</Text>
@@ -13,19 +19,17 @@ export default function Payement() {
             <Text style={styles.label}>Votre nom</Text>
             <TextInput
                 style={styles.input}
-                onChangeText={(e) => setData(e)}
-            />
-            <Text style={styles.label}>Votre adresse</Text>
-            <TextInput
-                style={styles.input}
+                onChangeText={(e) => setNomClient(e)}
             />
             <Text style={styles.label}>Numero de carte crédit</Text>
             <TextInput
                 style={styles.input}
+                onChangeText={(e) => setNumCarte(e)}
             />
             <Text style={styles.label}>Adresse de livraison</Text>
             <TextInput
                 style={styles.input}
+                onChangeText={(e) => setAddresse(e)}
             />
         </View>
         <View style={styles.buttons}>
