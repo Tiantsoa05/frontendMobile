@@ -6,7 +6,8 @@ const cartSlice = createSlice({
     initialState: {
         products: [],
         totalPrice: 0,
-        cartSize: 0
+        cartSize: 0,
+        categorie: "tendances"
     },
     reducers: {
         addToCart: (state, action) => {
@@ -65,11 +66,15 @@ const cartSlice = createSlice({
 
             return state
 
+        },
+
+        chooseCategory: (state, action) => {
+            state.categorie = action.payload
         }
     }
 })
 
-export const { addToCart, removeFromCart } = cartSlice.actions
+export const { addToCart, removeFromCart, chooseCategory } = cartSlice.actions
 
 export const cartStore = configureStore(
     {
@@ -80,10 +85,10 @@ export const cartStore = configureStore(
 )
 
 
-function calcul(products){
+function calcul(products) {
     let somme = 0
-    if(products.length!==0){
-        products.map(product => somme+= parseInt(product.total))
+    if (products.length !== 0) {
+        products.map(product => somme += parseInt(product.total))
     }
     return somme
 }
