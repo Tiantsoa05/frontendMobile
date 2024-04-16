@@ -4,6 +4,17 @@ import ListeData from '../data/data.json'
 import Header from "./Header/Header";
 
 export default function Liste() {
+    const [container, setContainer] = useState([])
+
+    useEffect(function () {
+        fetch("http://192.168.56.1:3000/api/produits/all")
+            .then(response => response.json()).then(data => { setContainer(data) })
+            .catch(error => alert(error))
+    }, [])
+
+    const selectContainer = (container) => {
+        alert()
+    }
 
     return (
         <View style={styles.container}>
@@ -14,7 +25,7 @@ export default function Liste() {
                     <Text>Filtres:</Text>
                 </View>
                 <View style={styles.filterButtons}>
-                    <ScrollView overScrollMode="never" style={{flex:1,width: "100%" ,height:50}}>
+                    <ScrollView overScrollMode="never" style={{ flex: 1, width: "100%", height: 50 }}>
                         <TouchableOpacity>
                             <Text>Mobilier</Text>
                         </TouchableOpacity>
@@ -80,11 +91,11 @@ const styles = StyleSheet.create(
         },
         filterButtons: {
             flex: 1,
-            display:"flex",
+            display: "flex",
             flexDirection: "row",
-            flexWrap:"nowrap",
+            flexWrap: "nowrap",
             width: 100,
-            backgroundColor:"red"
+            backgroundColor: "red"
         }
     }
 )

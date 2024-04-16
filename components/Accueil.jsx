@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image, FlatList } from "react-native";
 import Header from "./Header/Header";
 import { IP_ADDRESS } from "../config/config";
 
-export default function Accueil({navigation}) {
+export default function Accueil({ navigation }) {
 
     const [categories, setCategories] = useState([])
 
     useEffect(function () {
-        fetch(`http://${IP_ADDRESS}:3000/api/categories/all`)
-            .then(response => {
-                setCategories(response.data)
-            })
+        fetch("http://192.168.56.1:3000/api/categories/all")
+            .then(response => response.json()).then(data => { setCategories(data) })
             .catch(error => alert(error))
     }, [])
 
-    const selectCategory = () => {
-        navigation.emit(
-            {
-                type:"tabPress",
-                target:"Liste"
-            }
-        )
+    const selectCategory = (categorie) => {
+        navigation.navigate("Liste")
     }
 
     return (
@@ -31,10 +24,11 @@ export default function Accueil({navigation}) {
             <View style={styles.categories}>
                 <ScrollView overScrollMode="never" style={styles.scrollContainer}>
                     {
-                        categories.map(categorie => {
-                            return <View style={styles.categorie} onPress={() => selectCategory(categorie)}>
+                        categories.map((categorie) => {
+                            console.log(categorie)
+                            return <View style={styles.categorie} key={categorie.id_categorie} onPress={() => selectCategory(categorie)}>
                                 <View style={styles.image}>
-                                    <Image source={require("../assets/images/"+categorie.Nom_categorie+".png")} style={styles.picture} />
+                                    <Image source={"../assets/images/" + categorie.Nom_categorie + ".png"} style={styles.picture} />
                                 </View>
                                 <View style={styles.description}>
                                     <Text style={styles.desc}>{categorie.Nom_categorie}</Text>
@@ -66,7 +60,8 @@ const styles = StyleSheet.create({
     categorie: {
         borderRadius: 18,
         marginTop: 8,
-        maxHeight: 100,
+        height: 100,
+        width: 300,
         position: "relative",
         marginLeft: 25
     },
@@ -84,6 +79,7 @@ const styles = StyleSheet.create({
         marginTop: 12,
         flexWrap: "wrap",
         backgroundColor: "red",
+        padding: 12
     },
     description: {
         position: "absolute",
@@ -96,7 +92,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     desc: {
-        color: "white",
+        color: "black",
         fontSize: 24
     }
 })
