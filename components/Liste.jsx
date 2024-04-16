@@ -74,7 +74,7 @@ const styles = StyleSheet.create(
         container: {
             display: "flex",
             flex: 1,
-            gap: 15,
+            gap: 18,
             padding: 5
         },
         title: {
