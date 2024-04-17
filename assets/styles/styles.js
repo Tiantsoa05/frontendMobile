@@ -1,59 +1,97 @@
 import { StyleSheet } from "react-native"
-
-export const HomeStyles = StyleSheet.create({
-    title: {
-        textAlign: "center",
-        color: "red",
-        textTransform: "uppercase",
-        fontSize: 20,
-        fontWeight: "bold"
-    },
-    categories: {
+export const HeaderStyles = StyleSheet.create({
+    header: {
         display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "flex-end",
-        alignItems: "center",
-    },
-    categorie: {
-        borderRadius: 18,
-        marginTop: 8,
-        height: 100,
-        width: 300,
-        position: "relative",
-        marginLeft: 25
-    },
-    image: {
-        maxHeight: 250
-    },
-    picture: {
-        maxWidth: 350,
-        maxHeight: 250
-    },
-    scrollContainer: {
-        flex: 1,
-        width: "100%",
-        height: "120%",
-        marginTop: 12,
-        flexWrap: "wrap",
-        backgroundColor: "red",
-        padding: 12
-    },
-    description: {
-        position: "absolute",
-        backgroundColor: "rgba(22,22,22,0.4)",
-        width: "100%",
-        height: "100%",
-        margin: 8,
-        flex: 1,
+        height: 50,
+        marginLeft: 0,
+        marginTop: 0,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "space-around",
+        alignContent: "center"
     },
-    desc: {
-        color: "black",
-        fontSize: 24
+    logoContainer: {
+        alignSelf: "flex-start",
+        top: 10,
+        left: 15
+    },
+    titleContainer: {
+        top: -20,
+        right: 25
+    },
+    logo: {
+        height: 40,
+        width: 40,
+        borderRadius: 50
     }
 })
+
+export const HomeStyles = StyleSheet.create(
+    {
+        // title: {
+        //     textAlign: "center",
+        //     color: "red",
+        //     textTransform: "uppercase",
+        //     fontSize: 20,
+        //     fontWeight: "bold"
+        // },
+        // picture: {
+        //     maxWidth: 350,
+        //     maxHeight: 250
+        // },
+
+        categories: {
+            // flexDirection: "row",
+            // flexWrap: "wrap",
+            // justifyContent: "flex-end",
+            display: "flex",
+            alignItems: "center",
+        },
+        categorie: {
+            borderRadius: 18,
+            marginTop: 8,
+            height: 100,
+            width: 300,
+            position: "relative",
+            marginLeft: 25,
+            overflow:"hidden",
+            flex:1,
+            justifyContent:"center",
+            alignItems:"center"
+        },
+        image: {
+            position:"absolute",
+            top: 0,
+            left:0,
+            width:300,
+            height:100
+        },
+        scrollContainer: {
+            flex: 1,
+            width: "100%",
+            height: "120%",
+            marginTop: 12,
+            flexWrap: "wrap",
+            padding: 12
+        },
+        description: {
+            // position: "absolute",
+            // backgroundColor: "rgba(22,22,22,0.4)",
+            width: "100%",
+            height: "100%",
+            // margin: 8,
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center"
+        },
+        desc: {
+            color: "black",
+            fontSize: 24,
+            textAlign:"text",
+            backgroundColor: "#888",
+            padding: "11px 8px"
+        }
+    }
+)
 
 export const ListStyles = StyleSheet.create(
     {

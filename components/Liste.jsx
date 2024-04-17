@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, TextInput } from "react-native";
 import { ListStyles } from "../assets/styles/styles";
 import Header from "./Header/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,8 @@ export default function Liste() {
     const [categoryFilters, setCategoryFilters] = useState([])
     const categorie = useSelector(state => state.categorie)
     const dispatch = useDispatch()
+    const [find, setFind] = useState('')
+    const [found, setFound] = useState([])
 
     useEffect(function () {
         fetch("http://192.168.56.1:3000/api/produits/" + categorie)
@@ -22,10 +24,33 @@ export default function Liste() {
             .catch(error => alert(error))
     }, [])
 
+    const search = (payload) => {
+        setFind(payload)
+        setFound(container.find(item=>item.libelle.toLowerCase().includes(payload.toLowerCase())))
+    }
+
     return (
         <View style={ListStyles.container}>
             <Header />
             <Text style={ListStyles.title}>Nos produits</Text>
+            <View>
+                <TextInput
+                    value={find}
+                    onChangeText={(e) => search(e)}
+                />
+                {
+                    found.length > 0 &&
+                    <View>
+                        {
+                            found.map(item => {
+                                return(
+                                    <Text>{item.libelle}</Text>
+                                )
+                            })
+                        }
+                    </View>
+                }
+            </View>
             <View style={ListStyles.filters}>
                 <View>
                     <Text>Filtres:</Text>
@@ -42,8 +67,8 @@ export default function Liste() {
                                     <FilterButton
                                         title={category.Nom_categorie}
                                         style={
-                                            (category.Nom_categorie === categorie) ? 
-                                            ListStyles.checked : ListStyles.simple
+                                            (category.Nom_categorie === categorie) ?
+                                                ListStyles.checked : ListStyles.simple
                                         }
                                         onPress={() => dispatch(chooseCategory(category.Nom_categorie))}
                                     />

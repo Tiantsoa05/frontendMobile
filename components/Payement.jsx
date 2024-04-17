@@ -1,19 +1,35 @@
 import React, { useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import ConfirmButton from "./Buttons/ConfirmButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PayStyles } from "../assets/styles/styles";
+import ConfirmedPayModal from "./modals/ConfirmedPayModal";
+import { chooseCategory } from "../store/CartReducer";
 
 
-export default function Payement() {
+export default function Payement({navigation}) {
 
     const [nomClient, setNomClient] = useState('')
     const [addresse,setAddresse] = useState('')
     const [numCarte,setNumCarte] =useState('')
+    const [payed,confirmPay] = useState(false)
 
     const prix = useSelector(state => state.totalPrice)
+    const dispatch = useDispatch()
+
+    const Pay = ()=>{
+        dispatch(chooseCategory('tendances'))
+        setNomClient('')
+        setAddresse('')
+        setNumCarte('')
+        confirmPay(true)
+        navigation.navigate('Home')
+    }
 
     return <View style={PayStyles.formContainer}>
+        {
+            payed && <ConfirmedPayModal onPress={()=>confirmPay(false)}/>
+        }
         <Text style={PayStyles.title}>Paiement</Text>
         <Text style={PayStyles.valeur}>Net à payer : {prix}</Text>
         <View style={PayStyles.inputs}>
@@ -36,7 +52,7 @@ export default function Payement() {
         <View style={PayStyles.buttons}>
             <ConfirmButton 
                 title="Payer maintenant" 
-                onPress={()=>alert("Payement réussie")}
+                onPress={()=>Pay()}
             />
         </View>
     </View>

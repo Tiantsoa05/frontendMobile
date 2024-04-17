@@ -22,7 +22,7 @@ export default function Panier() {
     }
 
     return <View style={PanierStyles.container}>
-        <Header />
+        <Header/>
         <Text style={PanierStyles.title}>Panier</Text>
         {
             data.length > 1 ?
