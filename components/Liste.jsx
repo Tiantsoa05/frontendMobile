@@ -10,7 +10,7 @@ import FilterButton from "./Buttons/FilterButton";
 export default function Liste() {
     const [container, setContainer] = useState([])
     const [categoryFilters, setCategoryFilters] = useState([])
-    const categorie = useSelector(state => state.categorie)
+    const { categorie } = useSelector(state => state.cart)
     const dispatch = useDispatch()
     const [find, setFind] = useState('')
     const [found, setFound] = useState([])
@@ -26,7 +26,7 @@ export default function Liste() {
 
     const search = (payload) => {
         setFind(payload)
-        setFound(container.find(item=>item.libelle.toLowerCase().includes(payload.toLowerCase())))
+        setFound(container.find(item => item.libelle.toLowerCase().includes(payload.toLowerCase())))
     }
 
     return (
@@ -43,7 +43,7 @@ export default function Liste() {
                     <View>
                         {
                             found.map(item => {
-                                return(
+                                return (
                                     <Text>{item.libelle}</Text>
                                 )
                             })
