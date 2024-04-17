@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import { HomeStyles } from "../assets/styles/styles";
 import { useDispatch } from "react-redux";
 import { chooseCategory } from "../store/CartReducer";
-import path from 'path'
+// import path from 'path'
 
 export default function Accueil({ navigation }) {
 
@@ -39,8 +39,8 @@ export default function Accueil({ navigation }) {
                                         <View style={HomeStyles.image}>
                                             <Image
                                                 // source={{ uri: `file://${path.join(__dirname, '../assets/images', `${categorie.Nom_categorie}.png`)}` }}
-                                                // source={"images/"+categorie.Nom_categorie+".png"}
-                                                source={require(path.join(__dirname,'../assets/images',[categorie.Nom_categorie,'png'].join('.')))}
+                                                source={"images/"+categorie.Nom_categorie+".png"}
+                                                // source={require(path.join(__dirname,'../assets/images',[categorie.Nom_categorie,'png'].join('.')))}
                                                 style={HomeStyles.picture}
                                             />
                                         </View>
