@@ -12,7 +12,7 @@ import { removeFromCart } from "../store/CartReducer";
 export default function Panier() {
 
     // get store initial state
-    const data = useSelector(state => state.products)
+    const {products} = useSelector(state => state.cart)
 
     // initialiser les actions du store
     const dispacth = useDispatch()
@@ -25,10 +25,10 @@ export default function Panier() {
         <Header/>
         <Text style={PanierStyles.title}>Panier</Text>
         {
-            data.length > 1 ?
+            products.length > 1 ?
                 <ScrollView style={{ width: "100%", padding: 2 }}>
                     {
-                        data.map(item => {
+                        products.map(item => {
                             return (
                                 <View key={item.id} style={PanierStyles.cart}>
                                     <View style={PanierStyles.details}>
