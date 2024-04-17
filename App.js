@@ -13,7 +13,8 @@ const Tab = createBottomTabNavigator()
 
 function Tabs() {
 
-  const notifsCart = useSelector(state => state.cartSize)
+  const {cartSize} = useSelector(state => state.cart)
+
   return <Tab.Navigator
     screenOptions={
       ({ route }) => (
@@ -78,7 +79,7 @@ function Tabs() {
     <Tab.Screen
       name='Panier'
       component={Panier}
-      options={(notifsCart > 0) && { tabBarBadge: notifsCart }}
+      options={(cartSize > 0) && { tabBarBadge: cartSize }}
     />
     <Tab.Screen
       name='Payement'
