@@ -27,17 +27,17 @@ export const HeaderStyles = StyleSheet.create({
 
 export const HomeStyles = StyleSheet.create(
     {
-        // title: {
-        //     textAlign: "center",
-        //     color: "red",
-        //     textTransform: "uppercase",
-        //     fontSize: 20,
-        //     fontWeight: "bold"
-        // },
-        // picture: {
-        //     maxWidth: 350,
-        //     maxHeight: 250
-        // },
+        title: {
+            textAlign: "center",
+            color: "red",
+            textTransform: "uppercase",
+            fontSize: 20,
+            fontWeight: "bold"
+        },
+        picture: {
+            maxWidth: 350,
+            maxHeight: 250
+        },
 
         categories: {
             // flexDirection: "row",
@@ -45,6 +45,7 @@ export const HomeStyles = StyleSheet.create(
             // justifyContent: "flex-end",
             display: "flex",
             alignItems: "center",
+            width: "100%"
         },
         categorie: {
             borderRadius: 18,
@@ -53,29 +54,28 @@ export const HomeStyles = StyleSheet.create(
             width: 300,
             position: "relative",
             marginLeft: 25,
-            overflow:"hidden",
-            flex:1,
-            justifyContent:"center",
-            alignItems:"center"
+            overflow: "hidden",
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center"
         },
         image: {
-            position:"absolute",
+            position: "absolute",
             top: 0,
-            left:0,
-            width:300,
-            height:100
+            left: 0,
+            width: 300,
+            height: 100
         },
         scrollContainer: {
             flex: 1,
-            width: "100%",
-            height: "120%",
-            marginTop: 12,
-            flexWrap: "wrap",
-            padding: 12
+            width: 300,
+            height: 500,
+            padding: 12,
+            backgroundColor:"red"
         },
         description: {
             // position: "absolute",
-            // backgroundColor: "rgba(22,22,22,0.4)",
+            backgroundColor: "rgba(22,22,22,0.4)",
             width: "100%",
             height: "100%",
             // margin: 8,
@@ -86,7 +86,7 @@ export const HomeStyles = StyleSheet.create(
         desc: {
             color: "black",
             fontSize: 24,
-            textAlign:"text",
+            textAlign: "center",
             backgroundColor: "#888",
             padding: "11px 8px"
         }

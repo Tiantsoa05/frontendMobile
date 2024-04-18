@@ -18,11 +18,12 @@ export default function Liste() {
     const [found, setFound] = useState([])
 
     useEffect(function () {
-        fetch("http://192.168.56.1:3000/api/produits/" + categorie)
+        fetch("http://192.168.56.1:3000/api/categories/all")
             .then(response => response.json()).then(data => { setContainer(data) })
             .catch(error => alert(error))
-        fetch("http://192.168.56.1:3000/api/categories")
-            .then(response => response.json()).then(data => { setCategoryFilters(data) })
+
+        fetch("http://192.168.56.1:3000/api/categories/all")
+            .then(response => response.json()).then(data => {  (data) })
             .catch(error => alert(error))
     }, [])
 
