@@ -7,7 +7,7 @@ const cartSlice = createSlice({
         products: [],
         totalPrice: 0,
         cartSize: 0,
-        categorie: "tendances"
+        categorie: "meubles"
     },
     reducers: {
         addToCart: (state, action) => {
@@ -73,7 +73,7 @@ const cartSlice = createSlice({
         },
 
         giveNumberOfOrder: (state, action) => {
-            const {products} = state
+            const { products } = state
 
             return products.find(item => item.libelle === action.payload).nbre
         }
