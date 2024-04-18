@@ -5,11 +5,11 @@ import Header from "./Header/Header";
 import { PanierStyles } from "../assets/styles/styles";
 import ConfirmButton from "./Buttons/ConfirmButton";
 import CancelButton from "./Buttons/CancelButton";
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { useDispatch, useSelector } from "react-redux"
 import { removeFromCart } from "../store/CartReducer";
+import OrderCard from "./Cards/OrderCard";
 
-export default function Panier() {
+export default function Panier({navigation}) {
 
     // get store initial state
     const {products} = useSelector(state => state.cart)
@@ -21,6 +21,10 @@ export default function Panier() {
         dispacth(removeFromCart(item.libelle))
     }
 
+    const validCart = () =>{
+        navigation.navigate("Payement")
+    }
+
     return <View style={PanierStyles.container}>
         <Header/>
         <Text style={PanierStyles.title}>Panier</Text>
@@ -30,19 +34,10 @@ export default function Panier() {
                     {
                         products.map(item => {
                             return (
-                                <View key={item.id} style={PanierStyles.cart}>
-                                    <View style={PanierStyles.details}>
-                                        <Text>{item.libelle}</Text>
-                                    </View>
-                                    <View style={PanierStyles.decision}>
-                                        <FontAwesome5Icon
-                                            name="window-close"
-                                            color={"red"}
-                                            size={22}
-                                            onPress={() => deleteItem(item)}
-                                        />
-                                    </View>
-                                </View>
+                                <OrderCard
+                                    item={item}
+                                    onDelete={deleteItem}
+                                />
                             )
                         })
                     }
@@ -51,7 +46,10 @@ export default function Panier() {
         }
 
         <View style={PanierStyles.buttons}>
-            <ConfirmButton title="Valider le panier" />
+            <ConfirmButton 
+                title="Valider le panier"
+                onPress={() => validCart()} 
+            />
             <CancelButton title="Vider le panier" />
         </View>
     </View>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView, TouchableOpacity, TextInput } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, TextInput, Image } from "react-native";
 import { ListStyles } from "../assets/styles/styles";
 import Header from "./Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import ConfirmButton from "./Buttons/ConfirmButton";
-import { addToCart, chooseCategory } from "../store/CartReducer";
+import { addToCart, chooseCategory, giveNumberOfOrder } from "../store/CartReducer";
 import FilterButton from "./Buttons/FilterButton";
+import imagePath from "../public/imagePath";
+import ProductCard from "./Cards/ProductCard";
 
 export default function Liste() {
     const [container, setContainer] = useState([])
@@ -32,7 +34,7 @@ export default function Liste() {
     return (
         <View style={ListStyles.container}>
             <Header />
-            <Text style={ListStyles.title}>Nos produits</Text>
+            <Text style={ListStyles.title}>{categorie}</Text>
             <View>
                 <TextInput
                     value={find}
@@ -83,17 +85,7 @@ export default function Liste() {
                     {
                         container.map(item => {
                             return (
-                                <View style={ListStyles.card} key={item.id}>
-                                    <Text>Id: {item.id}</Text>
-                                    <Text>Id: {item.libelle}</Text>
-                                    <Text>Id: {item.prix}</Text>
-                                    <TouchableOpacity>
-                                        <ConfirmButton
-                                            title="Add to cart"
-                                            onPress={() => dispatch(addToCart(item))}
-                                        />
-                                    </TouchableOpacity>
-                                </View>
+                                <ProductCard item={item} image={`file:///${imagePath}/images/${item.libelle}.png`} />
                             )
                         })
                     }

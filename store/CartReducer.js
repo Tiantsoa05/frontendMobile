@@ -70,11 +70,17 @@ const cartSlice = createSlice({
 
         chooseCategory: (state, action) => {
             state.categorie = action.payload
+        },
+
+        giveNumberOfOrder: (state, action) => {
+            const {products} = state
+
+            return products.find(item => item.libelle === action.payload).nbre
         }
     }
 })
 
-export const { addToCart, removeFromCart, chooseCategory } = cartSlice.actions
+export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder } = cartSlice.actions
 
 export const cartStore = configureStore(
     {
