@@ -1,6 +1,7 @@
 import React from "react";
 import { PanierStyles } from "../../assets/styles/styles";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import { View, Text } from "react-native";
 
 export default function OrderCard({item,onDelete}){
     return (

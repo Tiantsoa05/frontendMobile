@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ConfirmButton from "../Buttons/ConfirmButton";
 import { ListStyles } from "../../assets/styles/styles";
+import { View, TouchableOpacity, Image, Text } from "react-native";
 
 export default function ProductCard({ item, image }) {
 
@@ -12,7 +13,7 @@ export default function ProductCard({ item, image }) {
     }
 
     return (
-        <View style={ListStyles.card} key={item.id}>
+        <View style={ListStyles.card}>
             <View style={ListStyles.imageContainer}>
                 <Image
                     source={

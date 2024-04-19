@@ -23,7 +23,7 @@ export default function Liste() {
             .catch(error => alert(error))
 
         fetch("http://192.168.56.1:3000/api/categories/all")
-            .then(response => response.json()).then(data => {  (data) })
+            .then(response => response.json()).then(data => { setCategoryFilters(data) })
             .catch(error => alert(error))
     }, [])
 
@@ -45,9 +45,9 @@ export default function Liste() {
                     found.length > 0 &&
                     <View>
                         {
-                            found.map(item => {
+                            found.map((item,index) => {
                                 return (
-                                    <Text>{item.libelle}</Text>
+                                    <Text key={index}>{item.libelle}</Text>
                                 )
                             })
                         }
@@ -61,13 +61,14 @@ export default function Liste() {
                 <View style={ListStyles.filterButtons}>
                     <ScrollView
                         overScrollMode="never"
-                        style={{ flex: 1, width: "100%", height: 50 }}
+                        style={{ flex: 1, width: 20, height: 500 }}
                         horizontal
                     >
                         {
                             categoryFilters.map(category => {
                                 return (
                                     <FilterButton
+                                        key={category.id_categorie}
                                         title={category.Nom_categorie}
                                         style={
                                             (category.Nom_categorie === categorie) ?
@@ -84,9 +85,9 @@ export default function Liste() {
             <View style={ListStyles.list}>
                 <ScrollView overScrollMode="never">
                     {
-                        container.map(item => {
+                        container.map((item,index) => {
                             return (
-                                <ProductCard item={item} image={`file:///${imagePath}/images/${item.libelle}.png`} />
+                                <ProductCard key={index} item={item} image={`file:///${imagePath}/images/${item.libelle}.png`} />
                             )
                         })
                     }
