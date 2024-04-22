@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { ScrollView } from "react-native";
 import { Text, View } from "react-native";
 import Header from "./Header/Header";
@@ -13,12 +13,19 @@ export default function Panier({ navigation }) {
 
     // get store initial state
     const { products } = useSelector(state => state.cart)
+    const [commandes,setCommandes] = useState([])
+
+    useEffect(()=>{
+        setCommandes(products)
+    },[])
 
     // initialiser les actions du store
-    const dispacth = useDispatch()
+    // const dispacth = useDispatch()
 
     const deleteItem = function (item) {
-        dispacth(removeFromCart(item.libelle))
+        let acc = commandes
+        setCommandes(commandes.filter(com=>com.libelle!==item.libelle))
+    //   dispacth(removeFromCart(item))
     }
 
     const validCart = () => {
@@ -32,7 +39,7 @@ export default function Panier({ navigation }) {
             products.length > 0 ?
                 <ScrollView style={{ width: "100%", padding: 2 }}>
                     {
-                        products.map((item,index) => {
+                        commandes.map((item,index) => {
                             return (
                                 <OrderCard
                                     key={index}
