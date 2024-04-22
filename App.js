@@ -7,7 +7,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import Liste from './components/Liste';
 import Payement from "./components/Payement";
 import { Provider, useSelector } from "react-redux"
-import { cartStore } from './store/CartReducer';
+import { store } from './store/store';
 
 const Tab = createBottomTabNavigator()
 
@@ -89,7 +89,7 @@ function Tabs() {
 }
 export default function App() {
   return (
-    <Provider store={cartStore}>
+    <Provider store={store}>
       <NavigationContainer>
         <Tabs />
       </NavigationContainer>
