@@ -38,7 +38,7 @@ export const cartSlice = createSlice({
 
                 state.products.push(
                     {
-                        libelle:action.payload.libelle,
+                        libelle: action.payload.libelle,
                         total: action.payload.prix,
                         nbre: 1
                     }
@@ -52,13 +52,12 @@ export const cartSlice = createSlice({
 
         removeFromCart: (state, action) => {
             // { type:cart/removeFromCart,payload:Nike supra }
+            let initial = state.products
 
-            const { products, cartSize, totalPrice } = state
+            state.products = initial.find(item => item.libelle !== action.payload.libelle)
 
-            products = products.find(item => item.libelle !== action.payload.libelle)
-
-            state.cartSize = products.length
-            state.totalPrice = calcul(products)
+            state.cartSize = state.products.length
+            state.totalPrice = calcul(state.products)
 
             return state
 
@@ -69,10 +68,9 @@ export const cartSlice = createSlice({
         },
 
         giveNumberOfOrder: (state, action) => {
-            const { products } = state
-
-            return products.find(item => item.libelle === action.payload).nbre
+            return state.products.find(item => item.libelle === action.payload).nbre
         },
+
         orderCart: async (state, action) => {
             const r = await fetch("http://192.168.56.1:3000/api/produit/commande", {
                 method: "POST",
@@ -81,6 +79,7 @@ export const cartSlice = createSlice({
 
             return r.ok
         },
+
         payOrder: async (state, action) => {
             const r = await fetch("http://192.168.56.1:3000/api/produit/payement", {
                 method: "POST",
@@ -88,7 +87,8 @@ export const cartSlice = createSlice({
             })
 
             return r.ok
-        },
+        }
+
     }
 })
 

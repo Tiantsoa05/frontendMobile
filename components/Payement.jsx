@@ -14,7 +14,7 @@ export default function Payement({navigation}) {
     const [numCarte,setNumCarte] =useState('')
     const [payed,confirmPay] = useState(false)
 
-    const prix = useSelector(state => state.totalPrice)
+    const {totalPrice} = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
     const Pay = ()=>{
@@ -31,7 +31,7 @@ export default function Payement({navigation}) {
             payed && <ConfirmedPayModal onPress={()=>confirmPay(false)}/>
         }
         <Text style={PayStyles.title}>Paiement</Text>
-        <Text style={PayStyles.valeur}>Net à payer : {prix}</Text>
+        <Text style={PayStyles.valeur}>Net à payer : {totalPrice}</Text>
         <View style={PayStyles.inputs}>
             <Text style={PayStyles.label}>Votre nom</Text>
             <TextInput

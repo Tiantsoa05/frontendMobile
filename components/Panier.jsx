@@ -37,7 +37,7 @@ export default function Panier({ navigation }) {
                                 <OrderCard
                                     key={index}
                                     item={item}
-                                    onDelete={deleteItem}
+                                    onDelete={()=>deleteItem(item)}
                                 />
                             )
                         })
