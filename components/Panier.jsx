@@ -9,10 +9,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { removeFromCart } from "../store/CartReducer";
 import OrderCard from "./Cards/OrderCard";
 
-export default function Panier({navigation}) {
+export default function Panier({ navigation }) {
 
     // get store initial state
-    const {products} = useSelector(state => state.cart)
+    const { products } = useSelector(state => state.cart)
 
     // initialiser les actions du store
     const dispacth = useDispatch()
@@ -21,20 +21,21 @@ export default function Panier({navigation}) {
         dispacth(removeFromCart(item.libelle))
     }
 
-    const validCart = () =>{
+    const validCart = () => {
         navigation.navigate("Payement")
     }
 
     return <View style={PanierStyles.container}>
-        <Header/>
+        <Header />
         <Text style={PanierStyles.title}>Panier</Text>
         {
-            products.length > 1 ?
+            products.length > 0 ?
                 <ScrollView style={{ width: "100%", padding: 2 }}>
                     {
-                        products.map(item => {
+                        products.map((item,index) => {
                             return (
                                 <OrderCard
+                                    key={index}
                                     item={item}
                                     onDelete={deleteItem}
                                 />
@@ -46,9 +47,9 @@ export default function Panier({navigation}) {
         }
 
         <View style={PanierStyles.buttons}>
-            <ConfirmButton 
+            <ConfirmButton
                 title="Valider le panier"
-                onPress={() => validCart()} 
+                onPress={() => validCart()}
             />
             <CancelButton title="Vider le panier" />
         </View>

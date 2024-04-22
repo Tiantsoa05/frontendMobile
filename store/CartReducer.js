@@ -13,21 +13,18 @@ export const cartSlice = createSlice({
         addToCart: (state, action) => {
             // { type:cart/addToCart,payload:{libelle: Nike supra,prix:25$ }}
 
-            const { products, cartSize, totalPrice } = state
-
-            const existedInCart = products.find(item => item.libelle === action.payload.libelle)
+            const existedInCart = state.products.find(item => item.libelle === action.payload.libelle)
 
             if (existedInCart) {
 
                 // const indexState = products.indexOf(existedInCart)
 
-                products.map(item => {
+                state.products.map(item => {
 
-                    const { libelle, nbre, total, prix } = item
 
-                    if (libelle === action.payload.libelle) {
-                        nbre += 1
-                        total = prix * nbre
+                    if (item.libelle === action.payload.libelle) {
+                        item.nbre += 1
+                        item.total = item.prix * item.nbre
                     }
 
                 })
@@ -38,19 +35,18 @@ export const cartSlice = createSlice({
 
             } else {
 
-                const { libelle, prix } = action.payload
 
-                products.push(
+                state.products.push(
                     {
-                        libelle,
-                        total: prix,
+                        libelle:action.payload.libelle,
+                        total: action.payload.prix,
                         nbre: 1
                     }
                 )
             }
 
-            cartSize = products.length
-            totalPrice = calcul(products)
+            state.cartSize = state.products.length
+            state.totalPrice = calcul(state.products)
 
         },
 
@@ -61,8 +57,8 @@ export const cartSlice = createSlice({
 
             products = products.find(item => item.libelle !== action.payload.libelle)
 
-            cartSize = products.length
-            totalPrice = calcul(products)
+            state.cartSize = products.length
+            state.totalPrice = calcul(products)
 
             return state
 
@@ -76,11 +72,27 @@ export const cartSlice = createSlice({
             const { products } = state
 
             return products.find(item => item.libelle === action.payload).nbre
-        }
+        },
+        orderCart: async (state, action) => {
+            const r = await fetch("http://192.168.56.1:3000/api/produit/commande", {
+                method: "POST",
+                body: action.payload
+            })
+
+            return r.ok
+        },
+        payOrder: async (state, action) => {
+            const r = await fetch("http://192.168.56.1:3000/api/produit/payement", {
+                method: "POST",
+                body: action.payload
+            })
+
+            return r.ok
+        },
     }
 })
 
-export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder } = cartSlice.actions
+export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder, orderCart, payOrder } = cartSlice.actions
 
 function calcul(products) {
     let somme = 0

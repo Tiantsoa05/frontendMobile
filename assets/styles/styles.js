@@ -40,9 +40,9 @@ export const HomeStyles = StyleSheet.create(
         },
 
         categories: {
-            // flexDirection: "row",
-            // flexWrap: "wrap",
-            // justifyContent: "flex-end",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "flex-end",
             display: "flex",
             alignItems: "center",
             width: "100%"
@@ -69,9 +69,10 @@ export const HomeStyles = StyleSheet.create(
         scrollContainer: {
             flex: 1,
             width: 300,
-            height: 500,
+            height: 600,
             padding: 12,
-            backgroundColor:"red"
+            marginTop: 10,
+            backgroundColor: "red"
         },
         description: {
             // position: "absolute",
@@ -126,8 +127,10 @@ export const ListStyles = StyleSheet.create(
             display: "flex",
             flexDirection: "row",
             flexWrap: "nowrap",
-            width: 100,
-            backgroundColor: "red"
+            width: 300,
+            backgroundColor: "red",
+            alignItems:"center",
+            justifyContent:"center"
         },
         checked: {
             container: {

@@ -16,10 +16,14 @@ export default function Liste() {
     const dispatch = useDispatch()
     const [find, setFind] = useState('')
     const [found, setFound] = useState([])
+    const [produits,setProduits] = useState([])
 
     useEffect(function () {
-        fetch("http://192.168.56.1:3000/api/categories/all")
-            .then(response => response.json()).then(data => { setContainer(data) })
+        fetch("http://192.168.56.1:3000/api/produits/all")
+            .then(response => response.json()).then(data => {
+                 setContainer(data) 
+                 setProduits(data.filter(item=>item.Nom_categorie===categorie))
+            })
             .catch(error => alert(error))
 
         fetch("http://192.168.56.1:3000/api/categories/all")
@@ -30,6 +34,13 @@ export default function Liste() {
     const search = (payload) => {
         setFind(payload)
         setFound(container.find(item => item.libelle.toLowerCase().includes(payload.toLowerCase())))
+    }
+
+    const selectCategory = (categorie) =>{
+        dispatch(chooseCategory(categorie))
+        setProduits(
+            container.filter(item=> item.Nom_categorie===categorie)
+        )
     }
 
     return (
@@ -61,7 +72,7 @@ export default function Liste() {
                 <View style={ListStyles.filterButtons}>
                     <ScrollView
                         overScrollMode="never"
-                        style={{ flex: 1, width: 20, height: 500 }}
+                        style={{ flex: 1, width: 150, height: 50,backgroundColor:"red",gap: 8}}
                         horizontal
                     >
                         {
@@ -74,7 +85,7 @@ export default function Liste() {
                                             (category.Nom_categorie === categorie) ?
                                                 ListStyles.checked : ListStyles.simple
                                         }
-                                        onPress={() => dispatch(chooseCategory(category.Nom_categorie))}
+                                        onPress={() => selectCategory(category.Nom_categorie)}
                                     />
                                 )
                             })
@@ -85,7 +96,7 @@ export default function Liste() {
             <View style={ListStyles.list}>
                 <ScrollView overScrollMode="never">
                     {
-                        container.map((item,index) => {
+                        produits.map((item,index) => {
                             return (
                                 <ProductCard key={index} item={item} image={`file:///${imagePath}/images/${item.libelle}.png`} />
                             )
