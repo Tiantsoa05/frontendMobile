@@ -1,7 +1,7 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
 
-const cartSlice = createSlice({
+export const cartSlice = createSlice({
     name: "cart",
     initialState: {
         products: [],
@@ -81,15 +81,6 @@ const cartSlice = createSlice({
 })
 
 export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder } = cartSlice.actions
-
-export const cartStore = configureStore(
-    {
-        reducer: {
-            cart: cartSlice.reducer
-        }
-    }
-)
-
 
 function calcul(products) {
     let somme = 0
