@@ -4,7 +4,7 @@ import ConfirmButton from "./Buttons/ConfirmButton";
 import { useDispatch, useSelector } from "react-redux";
 import { PayStyles } from "../assets/styles/styles";
 import ConfirmedPayModal from "./modals/ConfirmedPayModal";
-import { chooseCategory } from "../store/CartReducer";
+import { chooseCategory, payOrder, reinitialise } from "../store/CartReducer";
 
 
 export default function Payement({navigation}) {
@@ -18,7 +18,8 @@ export default function Payement({navigation}) {
     const dispatch = useDispatch()
 
     const Pay = ()=>{
-        dispatch(chooseCategory('tendances'))
+        dispatch(payOrder({id_client: 1, montant:totalPrice}))
+        dispatch(reinitialise())
         setNomClient('')
         setAddresse('')
         setNumCarte('')

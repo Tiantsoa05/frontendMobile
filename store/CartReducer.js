@@ -54,7 +54,7 @@ export const cartSlice = createSlice({
             // { type:cart/removeFromCart,payload:Nike supra }
             let initial = state.products
 
-            state.products = initial.find(item => item.libelle !== action.payload.libelle)
+            state.products = initial.filter(item => item.libelle !== action.payload.libelle)
 
             state.cartSize = state.products.length
             state.totalPrice = calcul(state.products)
@@ -87,12 +87,19 @@ export const cartSlice = createSlice({
             })
 
             return r.ok
+        },
+
+        reinitialise: (state, action) => {
+            state.products = []
+            state.categorie = "tendances"
+            state.totalPrice = 0
+            state.cartSize = 0
         }
 
     }
 })
 
-export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder, orderCart, payOrder } = cartSlice.actions
+export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder, orderCart, payOrder, reinitialise } = cartSlice.actions
 
 function calcul(products) {
     let somme = 0
