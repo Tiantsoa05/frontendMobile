@@ -17,7 +17,6 @@ export default function Liste() {
     const [find, setFind] = useState('')
     const [found, setFound] = useState([])
     const [produits, setProduits] = useState([])
-    const [numberProduct, setNumberProduct] = useState(0)
 
     useEffect(function () {
         fetch("http://192.168.56.1:3000/api/produits/all")
@@ -30,10 +29,6 @@ export default function Liste() {
         fetch("http://192.168.56.1:3000/api/categories/all")
             .then(response => response.json()).then(data => { setCategoryFilters(data) })
             .catch(error => alert(error))
-
-        return () => {
-            setNumberProduct(0)
-        }
     }, [])
 
     const search = (payload) => {
@@ -106,9 +101,7 @@ export default function Liste() {
                                 <ProductCard
                                     key={index}
                                     item={item}
-                                    image={`file:///${imagePath}/images/${item.libelle}.png`}
-                                    numberProduct={numberProduct}
-                                    setNumberProduct={setNumberProduct}
+                                    image={`${imagePath()}/images/${item.libelle}.png`}
                                 />
                             )
                         })

@@ -7,7 +7,8 @@ export const cartSlice = createSlice({
         products: [],
         totalPrice: 0,
         cartSize: 0,
-        categorie: "meubles"
+        categorie: "meubles",
+        countOrder: true
     },
     reducers: {
         addToCart: (state, action) => {
@@ -63,6 +64,7 @@ export const cartSlice = createSlice({
 
         },
 
+
         chooseCategory: (state, action) => {
             state.categorie = action.payload
         },
@@ -71,22 +73,30 @@ export const cartSlice = createSlice({
             return state.products.find(item => item.libelle === action.payload).nbre
         },
 
-        orderCart: async (state, action) => {
-            const r = await fetch("http://192.168.56.1:3000/api/produit/commande", {
-                method: "POST",
-                body: action.payload
-            })
+        orderCart: async (state) => {
+            try {
+                const r = await fetch("http://192.168.56.1:3000/api/produit/commande", {
+                    method: "POST",
+                    body: state.products
+                })
+            } catch (err) {
+                console.log(err)
+            }
 
-            return r.ok
+            // return r.ok
         },
 
         payOrder: async (state, action) => {
-            const r = await fetch("http://192.168.56.1:3000/api/produit/payement", {
-                method: "POST",
-                body: action.payload
-            })
+            try {
+                const r = await fetch("http://192.168.56.1:3000/api/produit/payement", {
+                    method: "POST",
+                    body: action.payload
+                })
+            } catch (error) {
+                console.log(error)
+            }
 
-            return r.ok
+            // return r.ok
         },
 
         reinitialise: (state, action) => {
@@ -94,12 +104,16 @@ export const cartSlice = createSlice({
             state.categorie = "tendances"
             state.totalPrice = 0
             state.cartSize = 0
+        },
+
+        setOrderCounter: (state, action) => {
+            state.countOrder = action.payload
         }
 
     }
 })
 
-export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder, orderCart, payOrder, reinitialise } = cartSlice.actions
+export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder, orderCart, payOrder, reinitialise, setOrderCounter } = cartSlice.actions
 
 function calcul(products) {
     let somme = 0

@@ -6,7 +6,7 @@ import { PanierStyles } from "../assets/styles/styles";
 import ConfirmButton from "./Buttons/ConfirmButton";
 import CancelButton from "./Buttons/CancelButton";
 import { useDispatch, useSelector } from "react-redux"
-import { orderCart, removeFromCart } from "../store/CartReducer";
+import { orderCart, reinitialise, removeFromCart } from "../store/CartReducer";
 import OrderCard from "./Cards/OrderCard";
 
 export default function Panier({ navigation }) {
@@ -29,8 +29,13 @@ export default function Panier({ navigation }) {
     }
 
     const validCart = () => {
-        dispacth(orderCart(commandes))
+        dispacth(orderCart())
         navigation.navigate("Payement")
+    }
+
+    const EmptyCart = () => {
+        dispacth(reinitialise())
+        setCommandes([])
     }
 
     return <View style={PanierStyles.container}>
@@ -59,7 +64,10 @@ export default function Panier({ navigation }) {
                 title="Valider le panier"
                 onPress={() => validCart()}
             />
-            <CancelButton title="Vider le panier" />
+            <CancelButton
+                title="Vider le panier"
+                onPress={() => EmptyCart()}
+            />
         </View>
     </View>
 }

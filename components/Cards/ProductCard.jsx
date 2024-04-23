@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ConfirmButton from "../Buttons/ConfirmButton";
 import { ListStyles } from "../../assets/styles/styles";
 import { View, TouchableOpacity, Image, Text } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/CartReducer";
 
-export default function ProductCard({ item, image, setNumberProduct,numberProduct }) {
+export default function ProductCard({ item, image }) {
+
+    const [numberProduct, setNumberProduct] = useState(0)
 
     const dispatch = useDispatch()
+    const { countOrder } = useSelector(state => state.cart)
+    const { products } = useSelector(state => state.cart)
+    const [actualItem,setActuelItem] = useState({})
+
+    useEffect(()=>{
+        let act = products.filter(i=>i.libelle===item.libelle)
+        setActuelItem(act)
+    },[products])
 
     const increment = () => {
         let acc = numberProduct + 1
         setNumberProduct(acc)
     }
+
 
     return (
         <View style={ListStyles.card}>
@@ -21,7 +32,7 @@ export default function ProductCard({ item, image, setNumberProduct,numberProduc
                     source={
                         { uri: image }
                     }
-                    style={ListStyles.image}
+                    style={{ position: "absolute", width: 5, height: 5, flex: 1, top: 0, left: 0 }}
                 />
             </View>
             <View style={ListStyles.description}>
@@ -29,7 +40,8 @@ export default function ProductCard({ item, image, setNumberProduct,numberProduc
                 <Text style={ListStyles.price}>{item.prix}</Text>
                 <TouchableOpacity>
                     <ConfirmButton
-                        title={"+" + (numberProduct > 0) && numberProduct}
+                        // title={(numberProduct > 0) ? numberProduct : ""}
+                        title={actualItem.nbre}
                         onPress={() => {
                             dispatch(addToCart(item))
                             increment()
