@@ -8,16 +8,9 @@ import { addToCart } from "../../store/CartReducer";
 export default function ProductCard({ item, image }) {
 
     const [numberProduct, setNumberProduct] = useState(0)
-
     const dispatch = useDispatch()
-    const { countOrder } = useSelector(state => state.cart)
     const { products } = useSelector(state => state.cart)
-    const [actualItem,setActuelItem] = useState({})
-
-    useEffect(()=>{
-        let act = products.filter(i=>i.libelle===item.libelle)
-        setActuelItem(act)
-    },[products])
+    const actualItem = products.filter(i => i.libelle === item.libelle)
 
     const increment = () => {
         let acc = numberProduct + 1
@@ -41,7 +34,7 @@ export default function ProductCard({ item, image }) {
                 <TouchableOpacity>
                     <ConfirmButton
                         // title={(numberProduct > 0) ? numberProduct : ""}
-                        title={actualItem.nbre}
+                        title={(actualItem.length > 0) ? actualItem.nbre : ""}
                         onPress={() => {
                             dispatch(addToCart(item))
                             increment()
