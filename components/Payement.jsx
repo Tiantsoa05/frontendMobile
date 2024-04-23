@@ -24,7 +24,7 @@ export default function Payement({navigation}) {
         setAddresse('')
         setNumCarte('')
         confirmPay(true)
-        navigation.navigate('Home')
+        navigation.navigate('Home') 
     }
 
     return <View style={PayStyles.formContainer}>
