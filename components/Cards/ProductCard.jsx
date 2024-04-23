@@ -5,9 +5,8 @@ import { View, TouchableOpacity, Image, Text } from "react-native";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/CartReducer";
 
-export default function ProductCard({ item, image }) {
+export default function ProductCard({ item, image, setNumberProduct,numberProduct }) {
 
-    const [numberProduct, setNumberProduct] = useState(0)
     const dispatch = useDispatch()
 
     const increment = () => {

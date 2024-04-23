@@ -16,19 +16,24 @@ export default function Liste() {
     const dispatch = useDispatch()
     const [find, setFind] = useState('')
     const [found, setFound] = useState([])
-    const [produits,setProduits] = useState([])
+    const [produits, setProduits] = useState([])
+    const [numberProduct, setNumberProduct] = useState(0)
 
     useEffect(function () {
         fetch("http://192.168.56.1:3000/api/produits/all")
             .then(response => response.json()).then(data => {
-                 setContainer(data) 
-                 setProduits(data.filter(item=>item.Nom_categorie===categorie))
+                setContainer(data)
+                setProduits(data.filter(item => item.Nom_categorie === categorie))
             })
             .catch(error => alert(error))
 
         fetch("http://192.168.56.1:3000/api/categories/all")
             .then(response => response.json()).then(data => { setCategoryFilters(data) })
             .catch(error => alert(error))
+
+        return () => {
+            setNumberProduct(0)
+        }
     }, [])
 
     const search = (payload) => {
@@ -36,10 +41,10 @@ export default function Liste() {
         setFound(container.find(item => item.libelle.toLowerCase().includes(payload.toLowerCase())))
     }
 
-    const selectCategory = (categorie) =>{
+    const selectCategory = (categorie) => {
         dispatch(chooseCategory(categorie))
         setProduits(
-            container.filter(item=> item.Nom_categorie===categorie)
+            container.filter(item => item.Nom_categorie === categorie)
         )
     }
 
@@ -56,7 +61,7 @@ export default function Liste() {
                     found.length > 0 &&
                     <View>
                         {
-                            found.map((item,index) => {
+                            found.map((item, index) => {
                                 return (
                                     <Text key={index}>{item.libelle}</Text>
                                 )
@@ -72,7 +77,7 @@ export default function Liste() {
                 <View style={ListStyles.filterButtons}>
                     <ScrollView
                         overScrollMode="never"
-                        style={{ flex: 1, width: 150, height: 50,backgroundColor:"red",gap: 8}}
+                        style={{ flex: 1, width: 150, height: 50, backgroundColor: "red", gap: 8 }}
                         horizontal
                     >
                         {
@@ -96,9 +101,15 @@ export default function Liste() {
             <View style={ListStyles.list}>
                 <ScrollView overScrollMode="never">
                     {
-                        produits.map((item,index) => {
+                        produits.map((item, index) => {
                             return (
-                                <ProductCard key={index} item={item} image={`file:///${imagePath}/images/${item.libelle}.png`} />
+                                <ProductCard
+                                    key={index}
+                                    item={item}
+                                    image={`file:///${imagePath}/images/${item.libelle}.png`}
+                                    numberProduct={numberProduct}
+                                    setNumberProduct={setNumberProduct}
+                                />
                             )
                         })
                     }
