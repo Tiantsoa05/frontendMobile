@@ -17,7 +17,6 @@ export default function ProductCard({ item, image }) {
         setNumberProduct(acc)
     }
 
-
     return (
         <View style={ListStyles.card}>
             <View style={ListStyles.imageContainer}>
@@ -34,7 +33,7 @@ export default function ProductCard({ item, image }) {
                 <TouchableOpacity>
                     <ConfirmButton
                         // title={(numberProduct > 0) ? numberProduct : ""}
-                        title={(actualItem.length > 0) ? actualItem.nbre : ""}
+                        title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
                         onPress={() => {
                             dispatch(addToCart(item))
                             increment()

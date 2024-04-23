@@ -13,18 +13,11 @@ export default function Panier({ navigation }) {
 
     // get store initial state
     const { products } = useSelector(state => state.cart)
-    const [commandes, setCommandes] = useState([])
-
-    useEffect(() => {
-        setCommandes(products)
-    }, [])
 
     // initialiser les actions du store
     const dispacth = useDispatch()
 
     const deleteItem = function (item) {
-        let acc = commandes
-        setCommandes(acc.filter(com => com.libelle !== item.libelle))
         dispacth(removeFromCart(item))
     }
 
@@ -42,10 +35,10 @@ export default function Panier({ navigation }) {
         <Header />
         <Text style={PanierStyles.title}>Panier</Text>
         {
-            commandes.length > 0 ?
-                <ScrollView style={{ width: "100%", padding: 2 }}>
+            products.length > 0 ?
+                <ScrollView overScrollMode="never" style={{ width: "100%", padding: 2, maxHeight:450 }}>
                     {
-                        commandes.map((item, index) => {
+                        products.map((item, index) => {
                             return (
                                 <OrderCard
                                     key={index}
