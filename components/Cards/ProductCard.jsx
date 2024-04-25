@@ -22,7 +22,7 @@ export default function ProductCard({ item, image }) {
             <View style={ListStyles.imageContainer}>
                 <Image
                     source={
-                        { uri: image }
+                        imagePath[item.libelle.split(' ').join("_".toLocaleLowerCase())]
                     }
                     style={{ position: "absolute", width: 5, height: 5, flex: 1, top: 0, left: 0 }}
                 />

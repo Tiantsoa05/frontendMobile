@@ -4,7 +4,7 @@ import ConfirmButton from "./Buttons/ConfirmButton";
 import { useDispatch, useSelector } from "react-redux";
 import { PayStyles } from "../assets/styles/styles";
 import ConfirmedPayModal from "./modals/ConfirmedPayModal";
-import { chooseCategory, payOrder, reinitialise } from "../store/CartReducer";
+import { payOrder, reinitialise } from "../store/CartReducer";
 
 
 export default function Payement({navigation}) {

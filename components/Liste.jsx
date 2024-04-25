@@ -8,6 +8,7 @@ import { addToCart, chooseCategory, giveNumberOfOrder } from "../store/CartReduc
 import FilterButton from "./Buttons/FilterButton";
 import imagePath from "../public/imagePath";
 import ProductCard from "./Cards/ProductCard";
+import { model } from "../config/config";
 
 export default function Liste() {
     const [container, setContainer] = useState([])
@@ -19,14 +20,14 @@ export default function Liste() {
     const [produits, setProduits] = useState([])
 
     useEffect(function () {
-        fetch("http://192.168.56.1:3000/api/produits/all")
+        model.get("/produits/all")
             .then(response => response.json()).then(data => {
                 setContainer(data)
                 setProduits(data.filter(item => item.Nom_categorie === categorie))
             })
             .catch(error => alert(error))
 
-        fetch("http://192.168.56.1:3000/api/categories/all")
+        model.get("/categories/all")
             .then(response => response.json()).then(data => { setCategoryFilters(data) })
             .catch(error => alert(error))
     }, [])
@@ -101,7 +102,6 @@ export default function Liste() {
                                 <ProductCard
                                     key={index}
                                     item={item}
-                                    image={`${imagePath()}/images/${item.libelle}.png`}
                                 />
                             )
                         })

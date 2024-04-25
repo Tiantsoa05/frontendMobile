@@ -5,7 +5,7 @@ import { HomeStyles } from "../assets/styles/styles";
 import { useDispatch } from "react-redux";
 import { chooseCategory } from "../store/CartReducer";
 import imagePath from "../public/imagePath";
-// import path from 'path'
+import { model } from "../config/config";
 
 export default function Accueil({ navigation }) {
 
@@ -13,7 +13,7 @@ export default function Accueil({ navigation }) {
     const dispatch = useDispatch()
 
     useEffect(function () {
-        fetch("http://192.168.56.1:3000/api/categories/all")
+        model.get("/categories/all")
             .then(response => response.json()).then(data => { setCategories(data) })
             .catch(error => alert(error))
     }, [])
@@ -39,7 +39,7 @@ export default function Accueil({ navigation }) {
                                     <View style={HomeStyles.categorie}>
                                         <View style={HomeStyles.image}>
                                             <Image
-                                                source={{ uri: `file:///${imagePath}/images/${categorie.Nom_categorie}.png` }}
+                                                source={imagePath[categorie.Nom_categorie.split(' ').join("_".toLocaleLowerCase())]}
                                                 style={HomeStyles.picture}
                                             />
                                         </View>
