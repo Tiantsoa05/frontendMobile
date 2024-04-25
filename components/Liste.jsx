@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView, TouchableOpacity, TextInput, Image } from "react-native";
+import { Text, View, ScrollView, TextInput} from "react-native";
 import { ListStyles } from "../assets/styles/styles";
 import Header from "./Header/Header";
 import { useDispatch, useSelector } from "react-redux";
-import ConfirmButton from "./Buttons/ConfirmButton";
-import { addToCart, chooseCategory, giveNumberOfOrder } from "../store/CartReducer";
+import {  chooseCategory } from "../store/CartReducer";
 import FilterButton from "./Buttons/FilterButton";
-import imagePath from "../public/imagePath";
 import ProductCard from "./Cards/ProductCard";
 import { model } from "../config/config";
 
@@ -21,14 +19,16 @@ export default function Liste() {
 
     useEffect(function () {
         model.get("/produits/all")
-            .then(response => response.json()).then(data => {
+            .then(response => response.json())
+            .then(data => {
                 setContainer(data)
                 setProduits(data.filter(item => item.Nom_categorie === categorie))
             })
             .catch(error => alert(error))
 
         model.get("/categories/all")
-            .then(response => response.json()).then(data => { setCategoryFilters(data) })
+            .then(response => response.json())
+            .then(data => { setCategoryFilters(data) })
             .catch(error => alert(error))
     }, [])
 

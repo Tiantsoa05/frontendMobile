@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ConfirmButton from "../Buttons/ConfirmButton";
 import { ListStyles } from "../../assets/styles/styles";
 import { View, TouchableOpacity, Image, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/CartReducer";
 
-export default function ProductCard({ item, image }) {
+export default function ProductCard({ item }) {
 
-    const [numberProduct, setNumberProduct] = useState(0)
     const dispatch = useDispatch()
     const { products } = useSelector(state => state.cart)
     const actualItem = products.filter(i => i.libelle === item.libelle)
-
-    const increment = () => {
-        let acc = numberProduct + 1
-        setNumberProduct(acc)
-    }
 
     return (
         <View style={ListStyles.card}>
@@ -32,7 +26,6 @@ export default function ProductCard({ item, image }) {
                 <Text style={ListStyles.price}>{item.prix}</Text>
                 <TouchableOpacity>
                     <ConfirmButton
-                        // title={(numberProduct > 0) ? numberProduct : ""}
                         title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
                         onPress={() => {
                             dispatch(addToCart(item))
