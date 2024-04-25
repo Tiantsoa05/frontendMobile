@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { model } from "../config/config"
 
 
 export const cartSlice = createSlice({
@@ -74,29 +75,19 @@ export const cartSlice = createSlice({
         },
 
         orderCart: async (state) => {
-            try {
-                const r = await fetch("http://192.168.56.1:3000/api/produit/commande", {
-                    method: "POST",
-                    body: state.products
-                })
-            } catch (err) {
-                console.log(err)
-            }
 
-            // return r.ok
+            model.post("/produits/commande", state.products)
+                .then(response => alert(response))
+                .catch(error => console.log(error))
+
         },
 
         payOrder: async (state, action) => {
-            try {
-                const r = await fetch("http://192.168.56.1:3000/api/produit/payement", {
-                    method: "POST",
-                    body: action.payload
-                })
-            } catch (error) {
-                console.log(error)
-            }
 
-            // return r.ok
+            model.post("/produits/payement", action.payload)
+                .then(response => alert(response))
+                .catch(error => console.log(error))
+
         },
 
         reinitialise: (state, action) => {
