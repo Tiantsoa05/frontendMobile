@@ -6,20 +6,20 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState: {
         products: [],
+        finalProducts: [],
         totalPrice: 0,
         cartSize: 0,
         categorie: "meubles",
         countOrder: true
     },
     reducers: {
+
         addToCart: (state, action) => {
             // { type:cart/addToCart,payload:{libelle: Nike supra,prix:25$ }}
 
             const existedInCart = state.products.find(item => item.libelle === action.payload.libelle)
 
             if (existedInCart) {
-
-                // const indexState = products.indexOf(existedInCart)
 
                 state.products.map(item => {
 
@@ -31,12 +31,15 @@ export const cartSlice = createSlice({
 
                 })
 
-                // products[indexState].nbre += 1
+                state.finalProducts.map(item => {
 
-                // products = actualState
+                    if (item.id_produit === action.payload.id_produit) {
+                        item.qte_produit += 1
+                    }
+
+                })
 
             } else {
-
 
                 state.products.push(
                     {
@@ -45,6 +48,15 @@ export const cartSlice = createSlice({
                         nbre: 1
                     }
                 )
+
+                state.finalProducts.push(
+                    {
+                        id_produit: action.payload.id_produit,
+                        id_client: 1,
+                        qte_produit: 1
+                    }
+                )
+
             }
 
             state.cartSize = state.products.length
@@ -53,10 +65,12 @@ export const cartSlice = createSlice({
         },
 
         removeFromCart: (state, action) => {
-            // { type:cart/removeFromCart,payload:Nike supra }
+
             let initial = state.products
+            let initialBuy = state.finalProducts
 
             state.products = initial.filter(item => item.libelle !== action.payload.libelle)
+            state.finalProducts = initialBuy.filter(item => item.id_produit !== action.payload.id_produit)
 
             state.cartSize = state.products.length
             state.totalPrice = calcul(state.products)
@@ -64,7 +78,6 @@ export const cartSlice = createSlice({
             return state
 
         },
-
 
         chooseCategory: (state, action) => {
             state.categorie = action.payload
@@ -74,24 +87,31 @@ export const cartSlice = createSlice({
             return state.products.find(item => item.libelle === action.payload).nbre
         },
 
-        orderCart: async (state) => {
+        orderCart: (state) => {
 
-            model.post("/produits/commande", state.products)
-                .then(response => alert(response))
+            const formData = new FormData()
+            formData.append('orders', JSON.stringify(state.finalProducts))
+
+            model.post("/produits/commande", formData)
+                .then(response => alert(response.data))
                 .catch(error => console.log(error))
 
         },
 
-        payOrder: async (state, action) => {
+        payOrder: (state, action) => {
 
-            model.post("/produits/payement", action.payload)
-                .then(response => alert(response))
+            const formData = new FormData()
+            formData.append('orders', JSON.stringify(action.payload))
+
+            model.post("/produits/payement", formData)
+                .then(response => alert(response.data))
                 .catch(error => console.log(error))
 
         },
 
-        reinitialise: (state, action) => {
+        reinitialise: (state) => {
             state.products = []
+            state.finalProducts = []
             state.categorie = "tendances"
             state.totalPrice = 0
             state.cartSize = 0
