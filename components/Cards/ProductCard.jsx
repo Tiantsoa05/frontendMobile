@@ -4,6 +4,7 @@ import { ListStyles } from "../../assets/styles/styles";
 import { View, TouchableOpacity, Image, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/CartReducer";
+import { imagePath } from "../../imagePath";
 
 export default function ProductCard({ item }) {
 
@@ -16,7 +17,7 @@ export default function ProductCard({ item }) {
             <View style={ListStyles.imageContainer}>
                 <Image
                     source={
-                        imagePath[item.libelle.split(' ').join("_".toLocaleLowerCase())]
+                        imagePath[item.libelle.split(' ').join("_").toLocaleLowerCase()]
                     }
                     style={{ position: "absolute", width: 5, height: 5, flex: 1, top: 0, left: 0 }}
                 />

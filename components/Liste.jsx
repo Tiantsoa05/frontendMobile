@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, TextInput} from "react-native";
-import { ListStyles } from "../assets/styles/styles";
+import { ListStyles, PayStyles } from "../assets/styles/styles";
 import Header from "./Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import {  chooseCategory } from "../store/CartReducer";
@@ -18,17 +18,17 @@ export default function Liste() {
     const [produits, setProduits] = useState([])
 
     useEffect(function () {
-        model.get("/produits/all")
-            .then(response => response.json())
+        fetch("http://192.168.88.17:3000/api//produits/all")
+            .then(response=>response.json())
             .then(data => {
-                setContainer(data)
+                setContainer(data.data)
                 setProduits(data.filter(item => item.Nom_categorie === categorie))
             })
             .catch(error => alert(error))
 
-        model.get("/categories/all")
+        fetch("http://192.168.88.17:3000/api//categories/all")
             .then(response => response.json())
-            .then(data => { setCategoryFilters(data) })
+            .then(data => { console.log(Array.from(data.data)) })
             .catch(error => alert(error))
     }, [])
 
@@ -52,10 +52,11 @@ export default function Liste() {
                 <TextInput
                     value={find}
                     onChangeText={(e) => search(e)}
+                    style={PayStyles.input}
                 />
                 {
                     found.length > 0 &&
-                    <View>
+                    <View >
                         {
                             found.map((item, index) => {
                                 return (
@@ -77,6 +78,7 @@ export default function Liste() {
                         horizontal
                     >
                         {
+                            categoryFilters.length>0 ?
                             categoryFilters.map(category => {
                                 return (
                                     <FilterButton
@@ -89,7 +91,8 @@ export default function Liste() {
                                         onPress={() => selectCategory(category.Nom_categorie)}
                                     />
                                 )
-                            })
+                            }):
+                            <Text>Aucun filtre</Text>
                         }
                     </ScrollView>
                 </View>
