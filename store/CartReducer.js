@@ -89,23 +89,43 @@ export const cartSlice = createSlice({
 
         orderCart: (state) => {
 
-            const formData = new FormData()
-            formData.append('orders', JSON.stringify(state.finalProducts))
+            // model.post("/produits/commande", { data: state.finalProducts })
+            //     .then(response => alert(response.data))
+            //     .catch(error => console.log(error))
 
-            model.post("/produits/commande", formData)
-                .then(response => alert(response.data))
-                .catch(error => console.log(error))
+            fetch('http://192.168.88.17:3000/api/produits/commande', {
+                Method: 'POST',
+                Headers: {
+                    Accept: 'application.json',
+                    'Content-Type': 'application/json'
+                },
+                Body: { data: state.finalProducts },
+                Cache: 'default'
+            })
+            .then(response=>response.json())
+            .then(data=>console.log(data))
+            .catch(error=>alert(error))
 
         },
 
         payOrder: (state, action) => {
 
-            const formData = new FormData()
-            formData.append('orders', JSON.stringify(action.payload))
+            // model.post("/produits/payement", { data: action.payload })
+            //     .then(response => alert(response.data))
+            //     .catch(error => console.log(error))
 
-            model.post("/produits/payement", formData)
-                .then(response => alert(response.data))
-                .catch(error => console.log(error))
+            fetch('http://192.168.88.17:3000/api/produits/payement', {
+                Method: 'POST',
+                Headers: {
+                    Accept: 'application.json',
+                    'Content-Type': 'application/json'
+                },
+                Body: { data: action.payload },
+                Cache: 'default'
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => alert(error))
 
         },
 
