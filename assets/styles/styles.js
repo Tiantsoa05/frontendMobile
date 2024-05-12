@@ -113,7 +113,7 @@ export const ListStyles = StyleSheet.create(
         card: {
             flex: 1,
             flexDirection: "row",
-            backgroundColor: "grey",
+            backgroundColor: "#FFE",
             gap: 10,
             padding: 10,
             borderRadius: 10,
@@ -121,7 +121,12 @@ export const ListStyles = StyleSheet.create(
             maxWidth: 390,
             height: 235,
             marginLeft: 8,
-            paddingRight: 5
+            paddingRight: 5,
+            shadowColor: "#CCC",
+            shadowOffset:{
+                width: 2,
+                height:3
+            }
         },
         imageContainer: {
             width: 150,
@@ -202,7 +207,8 @@ export const ListStyles = StyleSheet.create(
         buttons: {
             flex: 1,
             flexDirection: "row",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            top: 8
         }
     }
 )
