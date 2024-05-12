@@ -8,7 +8,7 @@ export default function AbortButton({ onPress }) {
             onPress={onPress}
         >
             <View style={styles.button}>
-                <Text style={styles.title}><FontAwesome5Icon name="stop" style={styles.icon}/></Text>
+                <Text style={styles.title}><FontAwesome5Icon name="window-close" style={styles.icon} /></Text>
             </View>
         </TouchableOpacity>
     )
@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         padding: 8,
         borderRadius: 9,
         width: 80,
-        height: 75
+        height: 55,
+        textAlign:"center"
     },
     title: {
         display: "flex",

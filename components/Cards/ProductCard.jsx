@@ -32,14 +32,16 @@ export default function ProductCard({ item }) {
                         title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
                         onPress={() => {
                             dispatch(addToCart(item))
-                            // increment()
                         }}
                     />
-                    <AbortButton
-                        onPress={()=>{
-                            dispatch(removeFromCart(item))
-                        }}
-                    />
+                    {
+                        (actualItem.length > 0) &&
+                        <AbortButton
+                            onPress={() => {
+                                dispatch(removeFromCart(item))
+                            }}
+                        />
+                    }
                 </View>
             </View>
         </View>
