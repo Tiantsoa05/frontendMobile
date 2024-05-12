@@ -198,6 +198,11 @@ export const ListStyles = StyleSheet.create(
         },
         filters: {
             top: 45
+        },
+        buttons:{
+            flex: 1,
+            flexDirection:"row",
+            justifyContent: "space-between"
         }
     }
 )
