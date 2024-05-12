@@ -2,13 +2,13 @@ import React from "react";
 import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
-export default function ChooseButton({ title, onPress }) {
+export default function AbortButton({ onPress }) {
     return (
         <TouchableOpacity
             onPress={onPress}
         >
             <View style={styles.button}>
-                <Text style={styles.title}><FontAwesome5Icon name="shopping-cart" style={styles.icon} />{title}</Text>
+                <Text style={styles.title}><FontAwesome5Icon name="stop" style={styles.icon}/></Text>
             </View>
         </TouchableOpacity>
     )
@@ -16,7 +16,7 @@ export default function ChooseButton({ title, onPress }) {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "green",
+        backgroundColor: "red",
         padding: 8,
         borderRadius: 9,
         width: 80,
