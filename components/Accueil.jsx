@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
 import Header from "./Header/Header";
-import { HomeStyles } from "../assets/styles/styles";
+import { HomeStyles, mainStyles } from "../assets/styles/styles";
 import { useDispatch } from "react-redux";
 import { chooseCategory } from "../store/CartReducer";
-import imagePath from "../imagePath";
 import CategoryCard from "./Cards/CategoryCard";
 
 export default function Accueil({ navigation }) {
@@ -28,9 +27,16 @@ export default function Accueil({ navigation }) {
 
 
     return (
-        <View>
+        <View style={mainStyles.screen}>
             <Header />
-
+            <View>
+                <Text>
+                    COCO Market
+                </Text>
+                <Text>
+                    Une multitude de produits de votre choix
+                </Text>
+            </View>
             <View style={HomeStyles.categories}>
                 <ScrollView overScrollMode="never" contentContainerStyle={HomeStyles.scrollContainer} horizontal>
                     {

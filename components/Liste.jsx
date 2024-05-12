@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView, TextInput} from "react-native";
-import { ListStyles, PayStyles } from "../assets/styles/styles";
+import { ListStyles, PayStyles, mainStyles } from "../assets/styles/styles";
 import Header from "./Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import {  chooseCategory } from "../store/CartReducer";
@@ -45,10 +45,10 @@ export default function Liste() {
     }
 
     return (
-        <View style={ListStyles.container}>
+        <View style={mainStyles.screen}>
             <Header />
             <Text style={ListStyles.title}>{categorie}</Text>
-            <View>
+            <View style={ListStyles.forms}>
                 <TextInput
                     value={find}
                     onChangeText={(e) => search(e)}
@@ -74,7 +74,8 @@ export default function Liste() {
                 <View style={ListStyles.filterButtons}>
                     <ScrollView
                         overScrollMode="never"
-                        style={{ flex: 1, width: 150, height: 50, backgroundColor: "red", gap: 8 }}
+                        scrollEnabled
+                        style={{ flex: 1, width: 50, height: 50, gap: 5 }}
                         horizontal
                     >
                         {
@@ -100,6 +101,7 @@ export default function Liste() {
             <View style={ListStyles.list}>
                 <ScrollView overScrollMode="never">
                     {
+                        produits.length>0?
                         produits.map((item, index) => {
                             return (
                                 <ProductCard
@@ -108,6 +110,7 @@ export default function Liste() {
                                 />
                             )
                         })
+                        : <Text> Aucun produit correspondant à ce catégorie</Text>
                     }
                 </ScrollView>
             </View>

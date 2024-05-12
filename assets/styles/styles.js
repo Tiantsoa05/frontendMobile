@@ -1,4 +1,17 @@
 import { StyleSheet } from "react-native"
+
+export const mainStyles = StyleSheet.create(
+    {
+        screen: {
+            backgroundColor: "#3c7cdd",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%"
+        }
+    }
+)
 export const HeaderStyles = StyleSheet.create({
     header: {
         display: "flex",
@@ -35,9 +48,9 @@ export const HomeStyles = StyleSheet.create(
             fontWeight: "bold"
         },
         picture: {
-            width:'100%',
+            width: '100%',
             height: '100%',
-            resizeMode:'cover'
+            resizeMode: 'cover'
         },
 
         categories: {
@@ -52,7 +65,7 @@ export const HomeStyles = StyleSheet.create(
             borderRadius: 18,
             marginTop: 8,
             height: 300,
-            width: 300,
+            width: 370,
             position: "relative",
             marginLeft: 25,
             overflow: "hidden",
@@ -64,15 +77,18 @@ export const HomeStyles = StyleSheet.create(
             position: "absolute",
             top: 0,
             left: 0,
-            width: 300,
-            height: 300
+            width: 370,
+            height: 350
         },
         scrollContainer: {
             flex: 1,
-            width: 500,
+            width: 600,
             height: 400,
             padding: 12,
-            marginTop: 10
+            marginTop: 200,
+            paddingBottom: 25,
+            paddingLeft: -15,
+            // backgroundColor:"red"
         },
         description: {
             width: "100%",
@@ -95,12 +111,21 @@ export const HomeStyles = StyleSheet.create(
 export const ListStyles = StyleSheet.create(
     {
         card: {
-            display: "flex",
+            flex: 1,
+            flexDirection: "row",
             backgroundColor: "grey",
+            gap: 10,
             padding: 10,
             borderRadius: 10,
-            minWidth: 50,
-            marginBottom: 9
+            marginBottom: 9,
+            maxWidth: 390,
+            height: 200,
+            marginLeft: 8,
+            paddingRight: 5
+        },
+        imageContainer:{
+            width: 150,
+            height: 188
         },
         container: {
             display: "flex",
@@ -112,28 +137,44 @@ export const ListStyles = StyleSheet.create(
             color: "red",
             textAlign: "center",
             textTransform: "uppercase",
-            fontSize: 19
+            fontSize: 19,
+            top: 15
+        },
+        name:{
+            fontSize: 18,
+            fontWeight: "600",
+            width: 200
+        },
+        desc:{
+            fontStyle: "italic",
+            width: 220,
+            height: 70,
+            overflow:"scroll"
         },
         list: {
             flex: 1,
             flexDirection: "column-reverse",
             gap: 19,
-            padding: 5
+            padding: 5,
+            top: -95
         },
         filterButtons: {
             flex: 1,
-            display: "flex",
             flexDirection: "row",
             flexWrap: "nowrap",
-            width: 300,
+            width: "99%",
             backgroundColor: "red",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            top: 30,
+            gap: 8
         },
         checked: {
             container: {
                 backgroundColor: "#56CF66",
-                padding: 8
+                padding: 8,
+                right: 5,
+                borderRadius: 8
             },
             text: {
                 color: "white"
@@ -142,11 +183,21 @@ export const ListStyles = StyleSheet.create(
         simple: {
             container: {
                 backgroundColor: "#C5F266",
-                padding: 8
+                padding: 8,
+                right: 5,
             },
             text: {
                 color: "green"
             }
+        },
+        forms: {
+            top: 25,
+        },
+        categoryFilter: {
+
+        },
+        filters: {
+            top: 45
         }
     }
 )
