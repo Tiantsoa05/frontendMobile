@@ -23,6 +23,8 @@ export default function Panier({ navigation }) {
 
     const validCart = () => {
         dispacth(orderCart())
+
+        
         navigation.navigate("Payement")
     }
 

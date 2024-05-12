@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import { HomeStyles } from "../assets/styles/styles";
 import { useDispatch } from "react-redux";
 import { chooseCategory } from "../store/CartReducer";
-import { imagePath } from "../imagePath";
+import { imagePath, images } from "../imagePath";
 
 export default function Accueil({ navigation }) {
 
@@ -12,12 +12,13 @@ export default function Accueil({ navigation }) {
     const dispatch = useDispatch()
 
     useEffect(function () {
-        fetch("http://192.168.88.17:3000/api/categories/all")
-            .then(response=>response.json())
-            .then(response => { 
-                console.log(Array.from(response.data)) 
-                let array = Array.from(response.data)
-                setCategories(array)
+        fetch("http://192.168.88.10:3000/api/categories/all")
+            .then(response => response.json())
+            .then(response => {
+                // console.log(Array.from(response.data))
+                // let array = Array.from(response.data)
+                // setCategories(array)
+                setCategories(response)
             })
             .catch(error => alert(error))
     }, [])
@@ -26,6 +27,7 @@ export default function Accueil({ navigation }) {
         dispatch(chooseCategory(categorie))
         navigation.navigate("Liste")
     }
+
 
     return (
         <View>
@@ -36,7 +38,11 @@ export default function Accueil({ navigation }) {
                     {
                         categories.length > 0 ?
                             categories.map((categorie) => {
-                                let image = imagePath[categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()]
+                                // // console.log(image)
+                                let image = categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()
+                                console.log(imagePath, image)
+                                // const imageUrl = images(`${image}.png`)
+                                const im = imagePath.find(i => (i.name === image) && i.url)
                                 return (
                                     <TouchableOpacity
                                         key={categorie.id_categorie}
@@ -45,7 +51,7 @@ export default function Accueil({ navigation }) {
                                         <View style={HomeStyles.categorie}>
                                             <View style={HomeStyles.image}>
                                                 <Image
-                                                    source={image}
+                                                    source={im}
                                                     style={HomeStyles.picture}
                                                 />
                                             </View>
