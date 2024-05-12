@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import ConfirmButton from "../Buttons/ConfirmButton";
+import React from "react";
 import { ListStyles } from "../../assets/styles/styles";
-import { View, TouchableOpacity, Image, Text } from "react-native";
+import { View, Image, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/CartReducer";
 import imagePath from "../../imagePath";
+import ChooseButton from "../Buttons/ChooseButton";
 
 export default function ProductCard({ item }) {
 
@@ -26,15 +26,13 @@ export default function ProductCard({ item }) {
                 <Text style={ListStyles.name}>{item.libelle}</Text>
                 <Text style={ListStyles.desc}>{item.description}</Text>
                 <Text style={ListStyles.price}>Prix: {item.prix} Ar</Text>
-                <TouchableOpacity>
-                    <ConfirmButton
-                        title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
-                        onPress={() => {
-                            dispatch(addToCart(item))
-                            increment()
-                        }}
-                    />
-                </TouchableOpacity>
+                <ChooseButton
+                    title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
+                    onPress={() => {
+                        dispatch(addToCart(item))
+                        increment()
+                    }}
+                />
             </View>
         </View>
     )
