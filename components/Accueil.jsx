@@ -32,13 +32,13 @@ export default function Accueil({ navigation }) {
             <Header />
 
             <View style={HomeStyles.categories}>
-                <ScrollView overScrollMode="never" style={HomeStyles.scrollContainer}>
+                <ScrollView overScrollMode="never" contentContainerStyle={HomeStyles.scrollContainer} horizontal>
                     {
                         categories.length > 0 ?
                             categories.map((categorie) => {
                                 return (
                                     <CategoryCard
-                                        key={categorie.id}
+                                        key={categorie.id_categorie}
                                         categorie={categorie}
                                         selectCategory={selectCategory}
                                     />
