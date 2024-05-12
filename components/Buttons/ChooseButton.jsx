@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 export default function ChooseButton({ title, onPress }) {
