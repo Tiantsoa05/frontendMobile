@@ -18,7 +18,7 @@ export default function Liste() {
     const [produits, setProduits] = useState([])
 
     useEffect(function () {
-        fetch("http://192.168.88.17:3000/api//produits/all")
+        fetch("http://192.168.56.1:3000/api//produits/all")
             .then(response=>response.json())
             .then(data => {
                 setContainer(data.data)
@@ -26,7 +26,7 @@ export default function Liste() {
             })
             .catch(error => alert(error))
 
-        fetch("http://192.168.88.17:3000/api//categories/all")
+        fetch("http://192.168.56.1:3000/api//categories/all")
             .then(response => response.json())
             .then(data => { console.log(Array.from(data.data)) })
             .catch(error => alert(error))
