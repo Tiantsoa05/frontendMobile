@@ -69,27 +69,24 @@ export const HomeStyles = StyleSheet.create(
         scrollContainer: {
             flex: 1,
             width: 300,
-            height: 600,
+            height: 680,
             padding: 12,
-            marginTop: 10,
-            backgroundColor: "red"
+            marginTop: 10
         },
         description: {
-            // position: "absolute",
-            backgroundColor: "rgba(22,22,22,0.4)",
             width: "100%",
             height: "100%",
-            // margin: 8,
             flex: 1,
             justifyContent: "center",
             alignItems: "center"
         },
         desc: {
             color: "black",
-            fontSize: 24,
+            fontSize: 26,
             textAlign: "center",
-            backgroundColor: "#888",
-            padding: "11px 8px"
+            padding: "11px 8px",
+            fontWeight: "bold",
+            textTransform: "uppercase"
         }
     }
 )
@@ -129,8 +126,8 @@ export const ListStyles = StyleSheet.create(
             flexWrap: "nowrap",
             width: 300,
             backgroundColor: "red",
-            alignItems:"center",
-            justifyContent:"center"
+            alignItems: "center",
+            justifyContent: "center"
         },
         checked: {
             container: {
