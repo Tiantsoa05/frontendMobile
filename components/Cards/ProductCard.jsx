@@ -11,13 +11,14 @@ export default function ProductCard({ item }) {
     const dispatch = useDispatch()
     const { products } = useSelector(state => state.cart)
     const actualItem = products.filter(i => i.libelle === item.libelle)
+    const image = imagePath[item.libelle.split(' ').join("_").toLocaleLowerCase()]
 
     return (
         <View style={ListStyles.card}>
             <View style={ListStyles.imageContainer}>
                 <Image
                     source={
-                        imagePath[item.libelle.split(' ').join("_").toLocaleLowerCase()]
+                        image
                     }
                     style={{ position: "absolute", width: 5, height: 5, flex: 1, top: 0, left: 0 }}
                 />

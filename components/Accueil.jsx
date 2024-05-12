@@ -36,6 +36,7 @@ export default function Accueil({ navigation }) {
                     {
                         categories.length > 0 ?
                             categories.map((categorie) => {
+                                let image = imagePath[categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()]
                                 return (
                                     <TouchableOpacity
                                         key={categorie.id_categorie}
@@ -44,7 +45,7 @@ export default function Accueil({ navigation }) {
                                         <View style={HomeStyles.categorie}>
                                             <View style={HomeStyles.image}>
                                                 <Image
-                                                    source={imagePath[categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()]}
+                                                    source={image}
                                                     style={HomeStyles.picture}
                                                 />
                                             </View>
