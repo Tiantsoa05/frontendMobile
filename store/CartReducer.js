@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { model } from "../config/config"
 
 
 export const cartSlice = createSlice({
@@ -102,9 +101,9 @@ export const cartSlice = createSlice({
                 Body: { data: state.finalProducts },
                 Cache: 'default'
             })
-            .then(response=>response.json())
-            .then(data=>console.log(data))
-            .catch(error=>alert(error))
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => alert(error))
 
         },
 
@@ -123,9 +122,9 @@ export const cartSlice = createSlice({
                 Body: { data: action.payload },
                 Cache: 'default'
             })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => alert(error))
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => alert(error))
 
         },
 

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {  chooseCategory } from "../store/CartReducer";
 import FilterButton from "./Buttons/FilterButton";
 import ProductCard from "./Cards/ProductCard";
-import { model } from "../config/config";
+import imagePath from "../imagePath";
 
 export default function Liste() {
     const [container, setContainer] = useState([])
@@ -21,14 +21,14 @@ export default function Liste() {
         fetch("http://192.168.56.1:3000/api//produits/all")
             .then(response=>response.json())
             .then(data => {
-                setContainer(data.data)
+                setContainer(data)
                 setProduits(data.filter(item => item.Nom_categorie === categorie))
             })
             .catch(error => alert(error))
 
         fetch("http://192.168.56.1:3000/api//categories/all")
             .then(response => response.json())
-            .then(data => { console.log(Array.from(data.data)) })
+            .then(data => { setCategoryFilters(data) })
             .catch(error => alert(error))
     }, [])
 

@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import { HomeStyles } from "../assets/styles/styles";
 import { useDispatch } from "react-redux";
 import { chooseCategory } from "../store/CartReducer";
-import { imagePath, images } from "../imagePath";
+import imagePath from "../imagePath";
 
 export default function Accueil({ navigation }) {
 
@@ -15,9 +15,6 @@ export default function Accueil({ navigation }) {
         fetch("http://192.168.88.10:3000/api/categories/all")
             .then(response => response.json())
             .then(response => {
-                // console.log(Array.from(response.data))
-                // let array = Array.from(response.data)
-                // setCategories(array)
                 setCategories(response)
             })
             .catch(error => alert(error))
@@ -37,12 +34,7 @@ export default function Accueil({ navigation }) {
                 <ScrollView overScrollMode="never" style={HomeStyles.scrollContainer}>
                     {
                         categories.length > 0 ?
-                            categories.map((categorie) => {
-                                // // console.log(image)
-                                let image = imagePath[categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()]
-                                console.log(imagePath, image)
-                                // const imageUrl = images(`${image}.png`)
-                                // const im = imagePath.find(i => (i.name === image) && i.url)
+                            categories.map((categorie) => {                         
                                 return (
                                     <TouchableOpacity
                                         key={categorie.id_categorie}
@@ -51,7 +43,7 @@ export default function Accueil({ navigation }) {
                                         <View style={HomeStyles.categorie}>
                                             <View style={HomeStyles.image}>
                                                 <Image
-                                                    source={image}
+                                                    source={imagePath[categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()]}
                                                     style={HomeStyles.picture}
                                                 />
                                             </View>
