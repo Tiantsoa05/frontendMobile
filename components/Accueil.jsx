@@ -38,7 +38,6 @@ export default function Accueil({ navigation }) {
                     {
                         categories.length > 0 ?
                             categories.map((categorie) => {
-                                // // let image = imagePath[categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()]
                                 // // console.log(image)
                                 let image = categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()
                                 console.log(imagePath, image)
