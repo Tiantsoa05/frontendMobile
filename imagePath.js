@@ -23,57 +23,56 @@
 // // import steve_madden from './assets/images/steve_madden.png'
 // // import the_drop from './assets/images/the_drop.png'
 
-// export const imagePath =
-// {
-//     "chaussures": './assets/images/chaussures.png',
-//     // "vêtements": vetements,
-//     // "cooks_standard": cooks_standard,
-//     // "cutter_&_buck": cutter_buck,
-//     // "divertissement": divertissement,
-//     // "dragon_touch_android_tablet": dragon_touch_android_tablet,
-//     // "electromenager": electromenager,
-//     // "electronique": electronique,
-//     // "hanes": hanes,
-//     // "Chedbanz_2023_edition_cards_picture_guessing": Chedbanz_2023_edition_cards_picture_guessing,
-//     // "honestbaby": honestbaby,
-//     // "jouets": jouets,
-//     // "mattel_games_blokus_xl_strategy_board_game": mattel_games_blokus_xl_strategy_board_game,
-//     // "meubles": meubles,
-//     // "Cninja_af101_air": Cninja_af101_air,
-//     // "nintendo_switch": nintendo_switch,
-//     // "playstation_5": playstation_5,
-//     // "realspace_peakwood_65": realspace_peakwood_65,
-//     // "rotary_cheese": rotary_cheese,
-//     // "samsung_galaxy_tab_s6_lite": samsung_galaxy_tab_s6_lite,
-//     // "samsung_galaxy_tab_s8_11_128gb_wifi_6e_android_tablet": samsung_galaxy_tab_s8_11_128gb_wifi_6e_android_tablet,
-//     // "sauder_nova_loft_59_w_l-shape_corner_desk": sauder_nova,
-//     // "steve_madden": steve_madden,
-//     // "the_drop": the_drop
-// }
-export const imagePath = [
-    {
-        name: "chaussures",
-        url: require('./public/images/chaussures.png')
-    },
-    {
-        name: "vêtements",
-        url: require('./public/images/vêtements.png')
-    },
-    {
-        name: "chaussures",
-        url: require('./public/images/chaussures.png')
-    },
-    {
-        name: "chaussures",
-        url: require('./public/images/chaussures.png')
-    },
-    {
-        name: "chaussures",
-        url: require('./public/images/chaussures.png')
-    },
-    {
-        name: "chaussures",
-        url: require('./public/images/chaussures.png')
-    },
+export default{
+    "chaussures": require('./assets/images/chaussures.png'),
+    // "vêtements": vetements,
+    // "cooks_standard": cooks_standard,
+    // "cutter_&_buck": cutter_buck,
+    // "divertissement": divertissement,
+    // "dragon_touch_android_tablet": dragon_touch_android_tablet,
+    // "electromenager": electromenager,
+    // "electronique": electronique,
+    // "hanes": hanes,
+    // "Chedbanz_2023_edition_cards_picture_guessing": Chedbanz_2023_edition_cards_picture_guessing,
+    // "honestbaby": honestbaby,
+    // "jouets": jouets,
+    // "mattel_games_blokus_xl_strategy_board_game": mattel_games_blokus_xl_strategy_board_game,
+    // "meubles": meubles,
+    // "Cninja_af101_air": Cninja_af101_air,
+    // "nintendo_switch": nintendo_switch,
+    // "playstation_5": playstation_5,
+    // "realspace_peakwood_65": realspace_peakwood_65,
+    // "rotary_cheese": rotary_cheese,
+    // "samsung_galaxy_tab_s6_lite": samsung_galaxy_tab_s6_lite,
+    // "samsung_galaxy_tab_s8_11_128gb_wifi_6e_android_tablet": samsung_galaxy_tab_s8_11_128gb_wifi_6e_android_tablet,
+    // "sauder_nova_loft_59_w_l-shape_corner_desk": sauder_nova,
+    // "steve_madden": steve_madden,
+    // "the_drop": the_drop
+}
+// export const imagePath = [
+//     {
+//         name: "chaussures",
+//         url: require('./public/images/chaussures.png')
+//     },
+//     {
+//         name: "vêtements",
+//         url: require('./public/images/vêtements.png')
+//     },
+//     {
+//         name: "chaussures",
+//         url: require('./public/images/chaussures.png')
+//     },
+//     {
+//         name: "chaussures",
+//         url: require('./public/images/chaussures.png')
+//     },
+//     {
+//         name: "chaussures",
+//         url: require('./public/images/chaussures.png')
+//     },
+//     {
+//         name: "chaussures",
+//         url: require('./public/images/chaussures.png')
+//     },
     
-]
+// ]

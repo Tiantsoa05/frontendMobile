@@ -39,10 +39,10 @@ export default function Accueil({ navigation }) {
                         categories.length > 0 ?
                             categories.map((categorie) => {
                                 // // console.log(image)
-                                let image = categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()
+                                let image = imagePath[categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()]
                                 console.log(imagePath, image)
                                 // const imageUrl = images(`${image}.png`)
-                                const im = imagePath.find(i => (i.name === image) && i.url)
+                                // const im = imagePath.find(i => (i.name === image) && i.url)
                                 return (
                                     <TouchableOpacity
                                         key={categorie.id_categorie}
@@ -51,7 +51,7 @@ export default function Accueil({ navigation }) {
                                         <View style={HomeStyles.categorie}>
                                             <View style={HomeStyles.image}>
                                                 <Image
-                                                    source={im}
+                                                    source={image}
                                                     style={HomeStyles.picture}
                                                 />
                                             </View>
