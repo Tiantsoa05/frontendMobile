@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native"
 export const mainStyles = StyleSheet.create(
     {
         screen: {
-            backgroundColor: "#3c7cdd",
+            // backgroundColor: "#3c7cdd",
+            backgroundColor: "#88B4F6",
             position: "absolute",
             top: 0,
             left: 0,
