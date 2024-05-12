@@ -35,8 +35,9 @@ export const HomeStyles = StyleSheet.create(
             fontWeight: "bold"
         },
         picture: {
-            maxWidth: 300,
-            maxHeight: 250
+            width:'100%',
+            height: '100%',
+            resizeMode:'cover'
         },
 
         categories: {
@@ -50,7 +51,7 @@ export const HomeStyles = StyleSheet.create(
         categorie: {
             borderRadius: 18,
             marginTop: 8,
-            height: 400,
+            height: 300,
             width: 300,
             position: "relative",
             marginLeft: 25,
