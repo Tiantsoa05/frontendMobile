@@ -65,12 +65,12 @@ export const HomeStyles = StyleSheet.create(
             top: 0,
             left: 0,
             width: 300,
-            height: 100
+            height: 300
         },
         scrollContainer: {
             flex: 1,
-            width: 300,
-            height: 680,
+            width: 500,
+            height: 400,
             padding: 12,
             marginTop: 10
         },
