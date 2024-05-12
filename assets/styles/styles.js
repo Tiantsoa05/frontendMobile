@@ -119,11 +119,11 @@ export const ListStyles = StyleSheet.create(
             borderRadius: 10,
             marginBottom: 9,
             maxWidth: 390,
-            height: 200,
+            height: 235,
             marginLeft: 8,
             paddingRight: 5
         },
-        imageContainer:{
+        imageContainer: {
             width: 150,
             height: 188
         },
@@ -140,16 +140,16 @@ export const ListStyles = StyleSheet.create(
             fontSize: 19,
             top: 15
         },
-        name:{
+        name: {
             fontSize: 18,
             fontWeight: "600",
             width: 200
         },
-        desc:{
+        desc: {
             fontStyle: "italic",
             width: 220,
             height: 70,
-            overflow:"scroll"
+            overflow: "scroll"
         },
         list: {
             flex: 1,
@@ -199,9 +199,9 @@ export const ListStyles = StyleSheet.create(
         filters: {
             top: 45
         },
-        buttons:{
+        buttons: {
             flex: 1,
-            flexDirection:"row",
+            flexDirection: "row",
             justifyContent: "space-between"
         }
     }
