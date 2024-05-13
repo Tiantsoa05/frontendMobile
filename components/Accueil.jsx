@@ -38,7 +38,7 @@ export default function Accueil({ navigation }) {
                 </Text>
             </View>
             <View style={HomeStyles.categories}>
-                <ScrollView overScrollMode="never" contentContainerStyle={HomeStyles.scrollContainer} horizontal>
+                {/* <ScrollView overScrollMode="never" contentContainerStyle={HomeStyles.scrollContainer} horizontal>
                     {
                         categories.length > 0 ?
                             categories.map((categorie) => {
@@ -52,8 +52,18 @@ export default function Accueil({ navigation }) {
                             }) :
                             <Text>Aucune catégorie</Text>
                     }
-                </ScrollView>
-                
+                </ScrollView> */}
+                <FlatList
+                    data={categories}
+                    renderItem={({item})=>{
+                        return <CategoryCard
+                            key={item.id_categorie}
+                            categorie={item}
+                            selectCategory={selectCategory}
+                        />
+                    }}
+                    horizontal
+                />
             </View>
         </View>
     )
