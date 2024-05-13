@@ -13,6 +13,7 @@ export default function CategoryCard({categorie,selectCategory}){
                     <Image
                         source={imagePath[categorie.Nom_categorie.split(' ').join("_").toLocaleLowerCase()]}
                         style={HomeStyles.picture}
+                        blurRadius={8}
                     />
                 </View>
                 <View style={HomeStyles.description}>

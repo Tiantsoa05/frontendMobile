@@ -39,7 +39,12 @@ export default function Accueil({ navigation }) {
             </View>
             <Text style={HomeStyles.catTitle}>Catégories</Text>
             <View style={HomeStyles.categories}>
-                <ScrollView overScrollMode="never" contentContainerStyle={HomeStyles.scrollContainer} horizontal>
+                <ScrollView
+                    overScrollMode="never"
+                    contentContainerStyle={HomeStyles.scrollContainer}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                >
                     {
                         categories.length > 0 ?
                             categories.map((categorie) => {

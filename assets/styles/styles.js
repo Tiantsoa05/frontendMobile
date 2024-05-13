@@ -41,27 +41,20 @@ export const HeaderStyles = StyleSheet.create({
 
 export const HomeStyles = StyleSheet.create(
     {
-        intro:{
+        intro: {
             backgroundColor: "white",
             width: 400,
-            marginHorizontal: 16,
-            padding: 35
+            marginHorizontal: 8,
+            padding: 35,
+            borderRadius: 18
         },
-        bigTitle:{
-            textAlign:"center",
-            fontSize: 28,
-            fontFamily: "Gill Sans",
-            fontWeight: 550,
-            fontStyle: "italic"
-        },
-        greet:{
+        greet: {
             fontSize: 18
         },
-        catTitle:{
+        catTitle: {
             textAlign: "center",
             fontSize: 20,
             color: "white",
-            fontWeight: 450
         },
         title: {
             textAlign: "center",
@@ -82,13 +75,14 @@ export const HomeStyles = StyleSheet.create(
             justifyContent: "flex-end",
             display: "flex",
             alignItems: "center",
-            width: "100%"
+            width: "100%",
+            flex: 1
         },
         categorie: {
             borderRadius: 18,
             marginTop: 8,
             height: 300,
-            width: 370,
+            width: 300,
             position: "relative",
             marginLeft: 25,
             overflow: "hidden",
@@ -103,12 +97,21 @@ export const HomeStyles = StyleSheet.create(
             width: 370,
             height: 350
         },
+        catTitle: {
+            textAlign: "center",
+            fontFamily: "Verdana",
+            top: 50,
+            fontSize: 19,
+            textTransform: "uppercase",
+            fontWeight: "bold",
+            color: "white"
+        },
         scrollContainer: {
             flex: 1,
             width: 600,
             height: 400,
             padding: 12,
-            marginTop: 200,
+            marginTop: 100,
             paddingBottom: 25,
             paddingLeft: -15,
             // backgroundColor:"red"
@@ -121,7 +124,7 @@ export const HomeStyles = StyleSheet.create(
             alignItems: "center"
         },
         desc: {
-            color: "black",
+            color: "white",
             fontSize: 26,
             textAlign: "center",
             padding: "11px 8px",
@@ -146,9 +149,9 @@ export const ListStyles = StyleSheet.create(
             marginLeft: 8,
             paddingRight: 5,
             shadowColor: "#CCC",
-            shadowOffset:{
+            shadowOffset: {
                 width: 2,
-                height:3
+                height: 3
             },
             marginVertical: 18
         },
@@ -236,7 +239,7 @@ export const ListStyles = StyleSheet.create(
             top: 25,
             paddingRight: 15
         },
-        price:{
+        price: {
             top: 8,
             fontSize: 18
         }
@@ -333,7 +336,8 @@ export const PayStyles = StyleSheet.create({
         padding: 10,
         justifyContent: "center",
         backgroundColor: "white",
-        height: "100%"
+        height: "100%",
+        backgroundColor: "#88B4F6"
     },
     title: {
         textAlign: "center",

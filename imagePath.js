@@ -24,7 +24,10 @@ const imagePath = {
     "the_drop": require('./public/images/the_drop.png'),
     "tendances": require('./public/images/tendances.png'),
     "samsung_galaxy_tab_s8_11_pouce_128gb_wifi_6e_android_tablet": require('./public/images/samsung_galaxy_tab_s8_11_pouce_128gb_wifi_6e_android_tablet.png'),
-    "nokia_t10": require('./public/images/nokia_t10.png')
+    "nokia_t10": require('./public/images/nokia_t10.png'),
+    "nike": require('./public/images/nike.png'),
+    "prada_en_cuir": require('./public/images/prada_en_cuir.png'),
+    "vans_old_skool": require('./public/images/vans_old_skool.png')
 }
 
 export default imagePath
