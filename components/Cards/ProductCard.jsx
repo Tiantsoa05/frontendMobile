@@ -6,7 +6,7 @@ import { addToCart, removeFromCart } from "../../store/CartReducer";
 import imagePath from "../../imagePath";
 import ChooseButton from "../Buttons/ChooseButton";
 import AbortButton from "../Buttons/AbortButton";
-import {formater} from "../../functions/functions"
+import { formater } from "../../functions/functions"
 
 export default function ProductCard({ item }) {
 
@@ -22,6 +22,7 @@ export default function ProductCard({ item }) {
                         imagePath[item.libelle.split(' ').join("_").toLocaleLowerCase()]
                     }
                     style={{ width: 150, height: 170, resizeMode: "cover" }}
+                    blurRadius={2}
                 />
             </View>
             <View style={ListStyles.description}>

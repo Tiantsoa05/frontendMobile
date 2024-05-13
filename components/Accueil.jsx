@@ -29,14 +29,15 @@ export default function Accueil({ navigation }) {
     return (
         <View style={mainStyles.screen}>
             <Header />
-            <View>
-                <Text>
+            <View style={HomeStyles.intro}>
+                <Text style={HomeStyles.bigTitle}>
                     COCO Market
                 </Text>
-                <Text>
+                <Text style={HomeStyles.greet}>
                     Une multitude de produits de votre choix
                 </Text>
             </View>
+            <Text style={HomeStyles.catTitle}>Catégories</Text>
             <View style={HomeStyles.categories}>
                 <ScrollView overScrollMode="never" contentContainerStyle={HomeStyles.scrollContainer} horizontal>
                     {

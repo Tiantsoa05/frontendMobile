@@ -41,6 +41,28 @@ export const HeaderStyles = StyleSheet.create({
 
 export const HomeStyles = StyleSheet.create(
     {
+        intro:{
+            backgroundColor: "white",
+            width: 400,
+            marginHorizontal: 16,
+            padding: 35
+        },
+        bigTitle:{
+            textAlign:"center",
+            fontSize: 28,
+            fontFamily: "Gill Sans",
+            fontWeight: 550,
+            fontStyle: "italic"
+        },
+        greet:{
+            fontSize: 18
+        },
+        catTitle:{
+            textAlign: "center",
+            fontSize: 20,
+            color: "white",
+            fontWeight: 450
+        },
         title: {
             textAlign: "center",
             color: "red",
