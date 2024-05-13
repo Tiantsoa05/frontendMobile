@@ -19,11 +19,12 @@ const imagePath = {
     "realspace_peakwood_65": require('./public/images/realspace_peakwood_65.png'),
     "rotary_cheese": require('./public/images/rotary_cheese.png'),
     "samsung_galaxy_tab_s6_lite": require('./public/images/samsung_galaxy_tab_s6_lite.png'),
-    "samsung_galaxy_tab_s8_11_128gb_wifi_6e_android_tablet": require('./public/images/samsung_galaxy_tab_s8_11_128gb_wifi_6e_android_tablet.png'),
     "sauder_nova_loft_59_w_l-shape_corner_desk": require('./public/images/sauder_nova_loft_59_w_l-shape_corner_desk.png'),
     "steve_madden": require('./public/images/steve_madden.png'),
     "the_drop": require('./public/images/the_drop.png'),
-    "tendances": require('./public/images/tendances.png')
+    "tendances": require('./public/images/tendances.png'),
+    "samsung_galaxy_tab_s8_11_pouce_128gb_wifi_6e_android_tablet": require('./public/images/samsung_galaxy_tab_s8_11_pouce_128gb_wifi_6e_android_tablet.png'),
+    "nokia_t10": require('./public/images/nokia_t10.png')
 }
 
 export default imagePath

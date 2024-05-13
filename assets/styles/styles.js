@@ -127,7 +127,8 @@ export const ListStyles = StyleSheet.create(
             shadowOffset:{
                 width: 2,
                 height:3
-            }
+            },
+            marginVertical: 18
         },
         imageContainer: {
             width: 150,
@@ -154,15 +155,16 @@ export const ListStyles = StyleSheet.create(
         desc: {
             fontStyle: "italic",
             width: 220,
-            height: 70,
+            height: 50,
             overflow: "scroll"
         },
         list: {
             flex: 1,
             flexDirection: "column-reverse",
-            gap: 19,
+            gap: 9,
             padding: 5,
-            top: -95
+            top: -95,
+            maxHeight: 550
         },
         filterButtons: {
             flex: 1,
@@ -209,7 +211,12 @@ export const ListStyles = StyleSheet.create(
             flex: 1,
             flexDirection: "row",
             justifyContent: "space-between",
-            top: 8
+            top: 25,
+            paddingRight: 15
+        },
+        price:{
+            top: 8,
+            fontSize: 18
         }
     }
 )

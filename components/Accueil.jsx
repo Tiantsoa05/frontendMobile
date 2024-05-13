@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, Image, TouchableOpacity, FlatList } from "react-native";
 import Header from "./Header/Header";
 import { HomeStyles, mainStyles } from "../assets/styles/styles";
 import { useDispatch } from "react-redux";
@@ -53,6 +53,7 @@ export default function Accueil({ navigation }) {
                             <Text>Aucune catégorie</Text>
                     }
                 </ScrollView>
+                
             </View>
         </View>
     )

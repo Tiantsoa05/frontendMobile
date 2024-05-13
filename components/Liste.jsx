@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView, TextInput} from "react-native";
+import { Text, View, ScrollView, TextInput, FlatList } from "react-native";
 import { ListStyles, PayStyles, mainStyles } from "../assets/styles/styles";
 import Header from "./Header/Header";
 import { useDispatch, useSelector } from "react-redux";
-import {  chooseCategory } from "../store/CartReducer";
+import { chooseCategory } from "../store/CartReducer";
 import FilterButton from "./Buttons/FilterButton";
 import ProductCard from "./Cards/ProductCard";
 import imagePath from "../imagePath";
@@ -19,7 +19,7 @@ export default function Liste() {
 
     useEffect(function () {
         fetch("http://192.168.56.1:3000/api//produits/all")
-            .then(response=>response.json())
+            .then(response => response.json())
             .then(data => {
                 setContainer(data)
                 setProduits(data.filter(item => item.Nom_categorie === categorie))
@@ -73,46 +73,36 @@ export default function Liste() {
                 </View>
                 <View style={ListStyles.filterButtons}>
                     <ScrollView
-                        overScrollMode="never"
-                        scrollEnabled
-                        style={{ flex: 1, width: 50, height: 50, gap: 5 }}
+                        style={{ flex: 1, width: 50, height: 50 }}
                         horizontal
                     >
                         {
-                            categoryFilters.length>0 ?
-                            categoryFilters.map(category => {
-                                return (
-                                    <FilterButton
-                                        key={category.id_categorie}
-                                        title={category.Nom_categorie}
-                                        style={
-                                            (category.Nom_categorie === categorie) ?
-                                                ListStyles.checked : ListStyles.simple
-                                        }
-                                        onPress={() => selectCategory(category.Nom_categorie)}
-                                    />
-                                )
-                            }):
-                            <Text>Aucun filtre</Text>
+                            categoryFilters.length > 0 ?
+                                categoryFilters.map(category => {
+                                    return (
+                                        <FilterButton
+                                            key={category.id_categorie}
+                                            title={category.Nom_categorie}
+                                            style={
+                                                (category.Nom_categorie === categorie) ?
+                                                    ListStyles.checked : ListStyles.simple
+                                            }
+                                            onPress={() => selectCategory(category.Nom_categorie)}
+                                        />
+                                    )
+                                }) :
+                                <Text>Aucun filtre</Text>
                         }
                     </ScrollView>
                 </View>
             </View>
             <View style={ListStyles.list}>
-                <ScrollView overScrollMode="never">
-                    {
-                        produits.length>0?
-                        produits.map((item, index) => {
-                            return (
-                                <ProductCard
-                                    key={index}
-                                    item={item}
-                                />
-                            )
-                        })
-                        : <Text> Aucun produit correspondant à ce catégorie</Text>
-                    }
-                </ScrollView>
+                <FlatList
+                    data={produits}
+                    renderItem={({ item }) => <ProductCard title={item.title} item={item} />}
+                    keyExtractor={item => item.libelle}
+                    overScrollMode="never"
+                />
             </View>
 
         </View>

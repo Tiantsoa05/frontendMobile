@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
         borderRadius: 9,
         width: 80,
         height: 55,
-        textAlign: "center"
+        textAlign: "center",
+        paddingTop: 17
     },
     title: {
         display: "flex",
