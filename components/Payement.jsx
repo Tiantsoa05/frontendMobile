@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PayStyles } from "../assets/styles/styles";
 import ConfirmedPayModal from "./modals/ConfirmedPayModal";
 import { payOrder, reinitialise } from "../store/CartReducer";
+import { formater } from "../functions/functions";
 
 
 export default function Payement({navigation}) {
@@ -32,7 +33,7 @@ export default function Payement({navigation}) {
             payed && <ConfirmedPayModal onPress={()=>confirmPay(false)}/>
         }
         <Text style={PayStyles.title}>Paiement</Text>
-        <Text style={PayStyles.valeur}>Net à payer : {totalPrice}</Text>
+        <Text style={PayStyles.valeur}>Net à payer : {formater(totalPrice)}</Text>
         <View style={PayStyles.inputs}>
             <Text style={PayStyles.label}>Votre nom</Text>
             <TextInput
