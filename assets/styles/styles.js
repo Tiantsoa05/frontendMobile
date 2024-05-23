@@ -130,7 +130,10 @@ export const HomeStyles = StyleSheet.create(
             paddingLeft: -15
         },
         scroll:{
-            flex:1
+            flex:1,
+            width: 600,
+            height: 400,
+            marginTop: 100,
         },
         description: {
             width: "100%",
