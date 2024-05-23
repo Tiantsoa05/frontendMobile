@@ -68,13 +68,10 @@ export default function Liste() {
                 }
             </View>
             <View style={ListStyles.filters}>
-                <View>
-                    <Text>Filtres:</Text>
-                </View>
                 <View style={ListStyles.filterButtons}>
                     <ScrollView
                         style={{ flex: 1, width: 50, height: 50 }}
-                        horizontal
+                        horizontal={true}
                     >
                         {
                             categoryFilters.length > 0 ?
