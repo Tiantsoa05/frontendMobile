@@ -70,7 +70,7 @@ export default function Liste() {
             <View style={ListStyles.filters}>
                 <View style={ListStyles.filterButtons}>
                     <ScrollView
-                        style={{ flex: 1, width: 50, height: 50 }}
+                        style={{ flex: 1, width: 600, height: 50 }}
                         horizontal={true}
                     >
                         {
