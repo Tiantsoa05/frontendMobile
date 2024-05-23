@@ -41,7 +41,7 @@ export default function Accueil({ navigation }) {
             <View style={HomeStyles.categories}>
                 <ScrollView
                     overScrollMode="never"
-                    contentContainerStyle={HomeStyles.scrollContainer}
+                    contentContainerStyle={HomeStyles.scroll}
                     horizontal={true}
                 >
                     {
