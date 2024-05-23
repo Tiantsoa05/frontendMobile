@@ -12,7 +12,7 @@ export default function Accueil({ navigation }) {
     const dispatch = useDispatch()
 
     useEffect(function () {
-        fetch("http://192.168.88.10:3000/api/categories/all")
+        fetch("http://192.168.56.1:3000/api/categories/all")
             .then(response => response.json())
             .then(response => {
                 setCategories(response)
@@ -42,8 +42,7 @@ export default function Accueil({ navigation }) {
                 <ScrollView
                     overScrollMode="never"
                     contentContainerStyle={HomeStyles.scrollContainer}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
+                    horizontal={true}
                 >
                     {
                         categories.length > 0 ?

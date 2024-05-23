@@ -25,12 +25,16 @@ export default function Payement({navigation}) {
         setAddresse('')
         setNumCarte('')
         confirmPay(true)
+    }
+    
+    const validPay = ()=>{
+        confirmPay(false)
         navigation.navigate('Home') 
     }
 
     return <View style={PayStyles.formContainer}>
         {
-            payed && <ConfirmedPayModal onPress={()=>confirmPay(false)}/>
+            payed && <ConfirmedPayModal onPress={()=>validPay()}/>
         }
         <Text style={PayStyles.title}>Paiement</Text>
         <Text style={PayStyles.valeur}>Net à payer : {formater(totalPrice)}</Text>
@@ -39,11 +43,13 @@ export default function Payement({navigation}) {
             <TextInput
                 style={PayStyles.input}
                 onChangeText={(e) => setNomClient(e)}
+                required
             />
             <Text style={PayStyles.label}>Numero de carte crédit</Text>
             <TextInput
                 style={PayStyles.input}
                 onChangeText={(e) => setNumCarte(e)}
+                required
             />
             <Text style={PayStyles.label}>Adresse de livraison</Text>
             <TextInput

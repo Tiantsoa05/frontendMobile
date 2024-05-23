@@ -16,17 +16,21 @@ export const mainStyles = StyleSheet.create(
 export const HeaderStyles = StyleSheet.create({
     header: {
         display: "flex",
-        height: 50,
+        height: 120,
         marginLeft: 0,
-        marginTop: 0,
         justifyContent: "center",
         alignItems: "space-around",
-        alignContent: "center"
+        alignContent: "center",
+        backgroundColor:"blue",
     },
     logoContainer: {
         alignSelf: "flex-start",
         top: 10,
-        left: 15
+        left: 15,
+        backgroundColor:"white",
+        width: 50,
+        height: 50,
+        borderRadius:50
     },
     titleContainer: {
         top: -20,
@@ -46,10 +50,20 @@ export const HomeStyles = StyleSheet.create(
             width: 400,
             marginHorizontal: 8,
             padding: 35,
-            borderRadius: 18
+            borderRadius: 18,
+            top: 28,
+            lineHeight: 2
         },
         greet: {
             fontSize: 18
+        },
+        bigTitle: {
+            fontStyle: "italic",
+            fontFamily: "sans serif",
+            fontSize: 25,
+            textAlign: "center",
+            color: "#88B4F6",
+            fontWeight: "bold"
         },
         catTitle: {
             textAlign: "center",
@@ -65,24 +79,24 @@ export const HomeStyles = StyleSheet.create(
         },
         picture: {
             width: '100%',
-            height: '100%',
-            resizeMode: 'cover'
+            height: "100%",
+            resizeMode: 'cover',
+            borderRadius:18
         },
 
         categories: {
             flexDirection: "row",
             flexWrap: "wrap",
-            justifyContent: "flex-end",
             display: "flex",
             alignItems: "center",
             width: "100%",
-            flex: 1
+            flex: 1,
         },
         categorie: {
             borderRadius: 18,
             marginTop: 8,
-            height: 300,
-            width: 300,
+            height: 250,
+            width: 250,
             position: "relative",
             marginLeft: 25,
             overflow: "hidden",
@@ -95,7 +109,7 @@ export const HomeStyles = StyleSheet.create(
             top: 0,
             left: 0,
             width: 370,
-            height: 350
+            height: 300
         },
         catTitle: {
             textAlign: "center",
@@ -113,8 +127,7 @@ export const HomeStyles = StyleSheet.create(
             padding: 12,
             marginTop: 100,
             paddingBottom: 25,
-            paddingLeft: -15,
-            // backgroundColor:"red"
+            paddingLeft: -15
         },
         description: {
             width: "100%",
@@ -124,12 +137,27 @@ export const HomeStyles = StyleSheet.create(
             alignItems: "center"
         },
         desc: {
-            color: "white",
+            color: "blue",
             fontSize: 26,
-            textAlign: "center",
-            padding: "11px 8px",
+            padding: "5px 5px",
             fontWeight: "bold",
-            textTransform: "uppercase"
+            textTransform: "uppercase",
+            top:80,
+            left: -15
+        },
+        round:{
+            backgroundColor:"white",
+            width:50,
+            height:50,
+            flex: 1,
+            position:"absolute",
+            top: 200,
+            left:190,
+            borderRadius: 50,
+            paddingTop: 12
+        },
+        plus:{
+            textAlign:'center'
         }
     }
 )
