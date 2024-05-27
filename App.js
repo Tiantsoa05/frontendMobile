@@ -8,84 +8,87 @@ import Liste from './components/Liste';
 import Payement from "./components/Payement";
 import { Provider, useSelector } from "react-redux"
 import { store } from './store/store';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Tab = createBottomTabNavigator()
 
 function Tabs() {
 
-  const {cartSize} = useSelector(state => state.cart)
+  const { cartSize } = useSelector(state => state.cart)
 
-  return <Tab.Navigator
-    screenOptions={
-      ({ route }) => (
-        {
-          tabBarActiveTintColor: 'grey',
-          tabBarInactiveTintColor: 'black',
-          labelStyle: { fontSize: 18 },
-          headerShown: false,
-          tabBarStyle: {
-            height: 50,
-            paddingHorizontal: 5,
-            paddingTop: 0,
-            backgroundColor: "white"
-          },
-          tabBarIcon: ({ focused, size, color }) => {
-            let iconName;
-            color = focused ? "#5665ff" : "black"
-            switch (route.name) {
-              case "Home": {
-                iconName = "home"
-                break
-              }
-              case "Commandes": {
-                iconName = "shopify"
-                break
-              }
-              case "Liste": {
-                iconName = "shopify"
-                break
-              }
-              case "Payement": {
-                iconName = "credit-card"
-                break
-              }
-              case "Panier": {
-                iconName = "shopping-cart"
-                break
-              }
+  return <GestureHandlerRootView style={{ flex: 1 }}>
+    <Tab.Navigator
+      screenOptions={
+        ({ route }) => (
+          {
+            tabBarActiveTintColor: 'grey',
+            tabBarInactiveTintColor: 'black',
+            labelStyle: { fontSize: 18 },
+            headerShown: false,
+            tabBarStyle: {
+              height: 50,
+              paddingHorizontal: 5,
+              paddingTop: 0,
+              backgroundColor: "white"
+            },
+            tabBarIcon: ({ focused, size, color }) => {
+              let iconName;
+              color = focused ? "#5665ff" : "black"
+              switch (route.name) {
+                case "Home": {
+                  iconName = "home"
+                  break
+                }
+                case "Commandes": {
+                  iconName = "shopify"
+                  break
+                }
+                case "Liste": {
+                  iconName = "shopify"
+                  break
+                }
+                case "Payement": {
+                  iconName = "credit-card"
+                  break
+                }
+                case "Panier": {
+                  iconName = "shopping-cart"
+                  break
+                }
 
+              }
+              return (
+                <FontAwesome5
+                  name={iconName}
+                  size={24}
+                  color={color}
+                />
+              )
             }
-            return (
-              <FontAwesome5
-                name={iconName}
-                size={24}
-                color={color}
-              />
-            )
           }
-        }
-      )
-    }
-  >
+        )
+      }
+    >
 
-    <Tab.Screen
-      name='Home'
-      component={Accueil}
-    />
-    <Tab.Screen
-      name='Liste'
-      component={Liste}
-    />
-    <Tab.Screen
-      name='Panier'
-      component={Panier}
-      options={(cartSize > 0) && { tabBarBadge: cartSize }}
-    />
-    <Tab.Screen
-      name='Payement'
-      component={Payement}
-    />
-  </Tab.Navigator>
+      <Tab.Screen
+        name='Home'
+        component={Accueil}
+      />
+      <Tab.Screen
+        name='Liste'
+        component={Liste}
+      />
+      <Tab.Screen
+        name='Panier'
+        component={Panier}
+        options={(cartSize > 0) && { tabBarBadge: cartSize }}
+      />
+      <Tab.Screen
+        name='Payement'
+        component={Payement}
+      />
+    </Tab.Navigator>
+  </GestureHandlerRootView>
 }
 export default function App() {
   return (

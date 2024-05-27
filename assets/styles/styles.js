@@ -21,16 +21,16 @@ export const HeaderStyles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "space-around",
         alignContent: "center",
-        backgroundColor:"blue",
+        backgroundColor: "blue",
     },
     logoContainer: {
         alignSelf: "flex-start",
         top: 10,
         left: 15,
-        backgroundColor:"white",
+        backgroundColor: "white",
         width: 50,
         height: 50,
-        borderRadius:50
+        borderRadius: 50
     },
     titleContainer: {
         top: -20,
@@ -81,7 +81,7 @@ export const HomeStyles = StyleSheet.create(
             width: '100%',
             height: "100%",
             resizeMode: 'cover',
-            borderRadius:18
+            borderRadius: 18
         },
 
         categories: {
@@ -120,20 +120,14 @@ export const HomeStyles = StyleSheet.create(
             fontWeight: "bold",
             color: "white"
         },
-        scrollContainer: {
+        scroll: {
             flex: 1,
-            width: 600,
+            width: 500,
             height: 400,
-            padding: 12,
             marginTop: 100,
             paddingBottom: 25,
-            paddingLeft: -15
-        },
-        scroll:{
-            flex:1,
-            width: 600,
-            height: 400,
-            marginTop: 100,
+            paddingLeft: -15,
+            padding: 12
         },
         description: {
             width: "100%",
@@ -148,22 +142,22 @@ export const HomeStyles = StyleSheet.create(
             padding: "5px 5px",
             fontWeight: "bold",
             textTransform: "uppercase",
-            top:80,
+            top: 80,
             left: -15
         },
-        round:{
-            backgroundColor:"white",
-            width:50,
-            height:50,
+        round: {
+            backgroundColor: "white",
+            width: 50,
+            height: 50,
             flex: 1,
-            position:"absolute",
+            position: "absolute",
             top: 200,
-            left:190,
+            left: 190,
             borderRadius: 50,
             paddingTop: 12
         },
-        plus:{
-            textAlign:'center'
+        plus: {
+            textAlign: 'center'
         }
     }
 )
