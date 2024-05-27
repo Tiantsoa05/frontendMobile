@@ -33,7 +33,7 @@ export default function ProductCard({ item }) {
                                 dispatch(removeFromCart(item))
                             }}
                         />
-                        <CartInput value={actualItem.length } />
+                        <CartInput item={item} />
                     </View>
                 }
             </View>
