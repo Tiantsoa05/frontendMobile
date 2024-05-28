@@ -3,11 +3,10 @@ import { View, Text, TextInput } from "react-native";
 import { PayStyles } from "../../assets/styles/styles";
 import { useSelector } from "react-redux";
 
-export default function CartInput({item}) {
+export default function CartInput({item,itemNumber}) {
 
     const [nombre, setNumber] = useState(0)
     const {products} = useSelector(state=>state.cart)
-    const actualItem = products.filter(i => i.libelle === item.libelle)
 
     return (
         <View>
@@ -15,7 +14,7 @@ export default function CartInput({item}) {
                 keyboardType="numeric" 
                 onChange={(e) => setNumber(e)} 
                 style={PayStyles.input}
-                defaultValue={`${actualItem.length}`}
+                defaultValue={`${itemNumber}`}
             />
         </View>
     )

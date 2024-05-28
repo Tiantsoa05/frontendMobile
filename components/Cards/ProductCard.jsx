@@ -1,5 +1,5 @@
-import React from "react";
-import { ListStyles } from "../../assets/styles/styles";
+import React, { useEffect, useState } from "react";
+import { ListOptions, ListStyles } from "../../assets/styles/styles";
 import { View, Image, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../../store/CartReducer";
@@ -9,6 +9,8 @@ import AbortButton from "../Buttons/AbortButton";
 import { formater } from "../../functions/functions"
 import { Swipeable } from "react-native-gesture-handler";
 import CartInput from "../Inputs/CartInput";
+import DynamicButton from "../Buttons/DynamicButton";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 export default function ProductCard({ item }) {
 
@@ -16,33 +18,59 @@ export default function ProductCard({ item }) {
     const { products } = useSelector(state => state.cart)
     const actualItem = products.filter(i => i.libelle === item.libelle)
 
+    // const rightOptions = () => {
+    //     return (
+    //         <View style={ListOptions.container}>
+    //             <ChooseButton
+    //                 title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
+    //                 onPress={() => {
+    //                     dispatch(addToCart(item))
+    //                 }}
+    //             />
+    //             {
+    //                 (actualItem.length > 0) &&
+    //                 <View>
+    //                     <AbortButton
+    //                         onPress={() => {
+    //                             dispatch(removeFromCart(item))
+    //                         }}
+    //                     />
+    //                     <CartInput item={item} />
+    //                 </View>
+    //             }
+    //         </View>
+    //     )
+    // }
     const rightOptions = () => {
+
+        const [actItem, setActItem] = useState(0)
+
+        useEffect(() => {
+            let productNumber = actualItem.length
+            setActItem(productNumber)
+        }, [])
+
         return (
-            <View style={ListStyles.buttons}>
-                <ChooseButton
-                    title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
-                    onPress={() => {
-                        dispatch(addToCart(item))
-                    }}
-                />
-                {
-                    (actualItem.length > 0) &&
-                    <View>
-                        <AbortButton
-                            onPress={() => {
-                                dispatch(removeFromCart(item))
-                            }}
-                        />
-                        <CartInput item={item} />
-                    </View>
-                }
+            <View style={ListOptions.container}>
+                <DynamicButton
+                    onPress={()=>{}}
+                >
+                    <FontAwesome5Icon name="plus" />
+                </DynamicButton>
+                <CartInput item={item} itemNumber={actItem} />
+                <DynamicButton>
+                    <FontAwesome5Icon name="plus" />
+                </DynamicButton>
             </View>
         )
+
     }
 
     return (
         <Swipeable
             renderRightActions={rightOptions}
+            rightThreshold={-150}
+            leftThreshold={50}
         >
             <View style={ListStyles.card}>
                 <View style={ListStyles.imageContainer}>
