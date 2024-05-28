@@ -1,13 +1,38 @@
 import React from "react";
+import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
-export default function DynamicButton({children,props}){
+export default function DynamicButton({ children, onPress }) {
     return (
         <TouchableOpacity
-            onPress={props.onPress}
+            onPress={onPress}
         >
-            <View style={props.styles.button}>
-                <Text style={props.styles.title}>{children}</Text>
+            <View style={styles.button}>
+                <Text style={styles.title}>{children}</Text>
             </View>
         </TouchableOpacity>
     )
 }
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: "green",
+        padding: 8,
+        borderRadius: 9,
+        width: 80,
+        height: 55,
+        textAlign: "center",
+        paddingTop: 17
+    },
+    title: {
+        display: "flex",
+        color: "white",
+        fontSize: 18,
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    icon: {
+        color: "white",
+        fontSize: 18,
+        fontWeight: "bold",
+        textAlign: "center"
+    }
+})

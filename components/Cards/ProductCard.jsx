@@ -8,57 +8,26 @@ import ChooseButton from "../Buttons/ChooseButton";
 import AbortButton from "../Buttons/AbortButton";
 import { formater } from "../../functions/functions"
 import { Swipeable } from "react-native-gesture-handler";
-import CartInput from "../Inputs/CartInput";
-import DynamicButton from "../Buttons/DynamicButton";
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import CommandeModal from "../modals/CommandeModal";
 
 export default function ProductCard({ item }) {
 
     const dispatch = useDispatch()
     const { products } = useSelector(state => state.cart)
     const actualItem = products.filter(i => i.libelle === item.libelle)
+    const [cartModal, displayCartModal] = useState(false)
 
-    // const rightOptions = () => {
-    //     return (
-    //         <View style={ListOptions.container}>
-    //             <ChooseButton
-    //                 title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
-    //                 onPress={() => {
-    //                     dispatch(addToCart(item))
-    //                 }}
-    //             />
-    //             {
-    //                 (actualItem.length > 0) &&
-    //                 <View>
-    //                     <AbortButton
-    //                         onPress={() => {
-    //                             dispatch(removeFromCart(item))
-    //                         }}
-    //                     />
-    //                     <CartInput item={item} />
-    //                 </View>
-    //             }
-    //         </View>
-    //     )
-    // }
     const rightOptions = () => {
-
-        const [actItem, setActItem] = useState(0)
-
-        useEffect(() => {
-            let productNumber = actualItem.length
-            setActItem(productNumber)
-        }, [])
-
         return (
-            <View style={ListStyles.buttons}>
+            <View style={ListOptions.container}>
                 <ChooseButton
                     title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
                     onPress={() => {
                         dispatch(addToCart(item))
+                        displayCartModal(true)
                     }}
                 />
-                {
+                {/* {
                     (actualItem.length > 0) &&
                     <View>
                         <AbortButton
@@ -68,17 +37,22 @@ export default function ProductCard({ item }) {
                         />
                         <CartInput item={item} />
                     </View>
+                } */}
+                {
+                    cartModal &&
+                    <CommandeModal 
+                        item={item} 
+                        onDispatch={dispatch(addToCart(item))} 
+                        onCloseModal = {()=>{displayCartModal(false)}}
+                    />
                 }
-            </View>
+            </View >
         )
-
     }
 
     return (
         <Swipeable
             renderRightActions={rightOptions}
-            rightThreshold={-150}
-            leftThreshold={50}
         >
             <View style={ListStyles.card}>
                 <View style={ListStyles.imageContainer}>
@@ -87,7 +61,6 @@ export default function ProductCard({ item }) {
                             imagePath[item.libelle.split(' ').join("_").toLocaleLowerCase()]
                         }
                         style={{ width: 150, height: 170, resizeMode: "cover" }}
-                        blurRadius={2}
                     />
                 </View>
                 <View style={ListStyles.description}>

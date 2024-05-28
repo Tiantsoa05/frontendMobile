@@ -24,7 +24,7 @@ export default function Panier({ navigation }) {
     const validCart = () => {
         dispacth(orderCart())
 
-        
+
         navigation.navigate("Payement")
     }
 
@@ -38,7 +38,7 @@ export default function Panier({ navigation }) {
         <Text style={PanierStyles.title}>Panier</Text>
         {
             products.length > 0 ?
-                <ScrollView overScrollMode="never" style={{ width: "100%", padding: 2, maxHeight:450 }}>
+                <ScrollView overScrollMode="never" style={{ width: "100%", padding: 2, maxHeight: 450 }}>
                     {
                         products.map((item, index) => {
                             return (
@@ -54,15 +54,21 @@ export default function Panier({ navigation }) {
                 <Text style={PanierStyles.info}>Panier vide</Text>
         }
 
-        <View style={PanierStyles.buttons}>
-            <ConfirmButton
-                title="Valider le panier"
-                onPress={() => validCart()}
-            />
-            <CancelButton
-                title="Vider le panier"
-                onPress={() => EmptyCart()}
-            />
-        </View>
+        {
+            products.length > 0 &&
+
+            <View style={PanierStyles.buttons}>
+
+                <ConfirmButton
+                    title="Valider le panier"
+                    onPress={() => validCart()}
+                />
+                <CancelButton
+                    title="Vider le panier"
+                    onPress={() => EmptyCart()}
+                />
+
+            </View>
+        }
     </View>
 }
