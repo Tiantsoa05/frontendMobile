@@ -25,7 +25,7 @@ export default function ProductCard({ item }) {
                         dispatch(addToCart(item))
                     }}
                 />
-                {
+                {/* {
                     (actualItem.length > 0) &&
                     <View>
                         <AbortButton
@@ -35,7 +35,7 @@ export default function ProductCard({ item }) {
                         />
                         <CartInput item={item} />
                     </View>
-                }
+                } */}
             </View>
         )
     }
