@@ -20,7 +20,7 @@ export default function ProductCard({ item }) {
     const [cartModal, displayCartModal] = useState(false)
 
     const modal = () => {
-        displayCartModal(true)
+        dispatch(setOrder(item))
     }
 
     const rightOptions = ({ navigation }) => {
@@ -55,13 +55,6 @@ export default function ProductCard({ item }) {
                     <Text style={ListStyles.price}>Prix: {formater(item.prix)} Ar</Text>
                 </View>
             </View>
-            {
-                cartModal &&
-                <CommandeModal
-                    item={item}
-                    onDispatch={() => { dispatch(addToCart(item)) }}
-                />
-            }
         </Swipeable>
     )
 }

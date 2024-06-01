@@ -7,6 +7,7 @@ import { chooseCategory } from "../store/CartReducer";
 import FilterButton from "./Buttons/FilterButton";
 import ProductCard from "./Cards/ProductCard";
 import imagePath from "../imagePath";
+import CommandeModal from "./modals/CommandeModal";
 
 export default function Liste() {
     const [container, setContainer] = useState([])
@@ -43,6 +44,8 @@ export default function Liste() {
             container.filter(item => item.Nom_categorie === categorie)
         )
     }
+
+    const { ordered } = useSelector(state => state.cart)
 
     return (
         <View style={mainStyles.screen}>
@@ -93,6 +96,7 @@ export default function Liste() {
                     </ScrollView>
                 </View>
             </View>
+
             <View style={ListStyles.list}>
                 <FlatList
                     data={produits}
@@ -101,7 +105,13 @@ export default function Liste() {
                     overScrollMode="never"
                 />
             </View>
-
+            {
+                ordered.length > 0 &&
+                <CommandeModal
+                    item={ordered}
+                    onDispatch={() => { dispatch(addToCart(ordered)) }}
+                />
+            }
         </View>
     )
 }

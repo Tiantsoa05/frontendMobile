@@ -44,10 +44,9 @@ export default function CommandeModal({ item, onDispatch }) {
 const styles = StyleSheet.create({
     container: {
         position: "absolute",
-        width: "100%",
-        height: "100%",
+        width: 400,
+        height: 500,
         backgroundColor: "white",
-        justifyContent: "center",
-        alignItems: "center"
+        justifyContent: "center"
     }
 })
