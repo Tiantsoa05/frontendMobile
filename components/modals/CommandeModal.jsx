@@ -10,16 +10,18 @@ import DynamicButton from "../Buttons/DynamicButton";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { useSelector } from "react-redux";
 
-export default function CommandeModal({ item, onDispatch }) {
+export default function CommandeModal({ item, onDispatch, close }) {
 
     const { products } = useSelector(state => state.cart)
     const actualItem = products.filter(i => i.libelle === item.libelle)
 
     return (
         <View style={styles.container}>
-            <View style={{ flex: 1, justifyContent: "space-around", flexDirection: "column" }}>
+            <View style={{ display: "flex" }}>
                 <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { close() }}
+                    >
                         <FontAwesome5Icon name="arrow-left" />
                     </TouchableOpacity>
                 </View>

@@ -102,16 +102,17 @@ export default function Liste() {
             <View style={ListStyles.list}>
                 <FlatList
                     data={produits}
-                    renderItem={({ item }) => <ProductCard display={()=>{displayCartModal(true)}} item={item} />}
+                    renderItem={({ item }) => <ProductCard display={() => { displayCartModal(true) }} item={item} />}
                     keyExtractor={item => item.libelle}
                     overScrollMode="never"
                 />
             </View>
             {
-                cartModal && 
+                cartModal &&
                 <CommandeModal
                     item={ordered}
                     onDispatch={() => { dispatch(addToCart(ordered)) }}
+                    close={() => { displayCartModal(false) }}
                 />
             }
         </View>
