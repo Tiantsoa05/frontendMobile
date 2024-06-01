@@ -15,37 +15,23 @@ export default function ProductCard({ item }) {
     const dispatch = useDispatch()
     const { products } = useSelector(state => state.cart)
     const actualItem = products.filter(i => i.libelle === item.libelle)
+
+
     const [cartModal, displayCartModal] = useState(false)
 
-    const rightOptions = () => {
+    const modal = () => {
+        displayCartModal(true)
+    }
+
+    const rightOptions = ({ navigation }) => {
         return (
             <View style={ListOptions.container}>
                 <ChooseButton
                     title={(actualItem.length > 0) ? actualItem[0].nbre : ""}
                     onPress={() => {
-                        dispatch(addToCart(item))
-                        displayCartModal(true)
+                        modal()
                     }}
                 />
-                {/* {
-                    (actualItem.length > 0) &&
-                    <View>
-                        <AbortButton
-                            onPress={() => {
-                                dispatch(removeFromCart(item))
-                            }}
-                        />
-                        <CartInput item={item} />
-                    </View>
-                } */}
-                {
-                    cartModal &&
-                    <CommandeModal 
-                        item={item} 
-                        onDispatch={dispatch(addToCart(item))} 
-                        onCloseModal = {()=>{displayCartModal(false)}}
-                    />
-                }
             </View >
         )
     }
@@ -69,6 +55,13 @@ export default function ProductCard({ item }) {
                     <Text style={ListStyles.price}>Prix: {formater(item.prix)} Ar</Text>
                 </View>
             </View>
+            {
+                cartModal &&
+                <CommandeModal
+                    item={item}
+                    onDispatch={() => { dispatch(addToCart(item)) }}
+                />
+            }
         </Swipeable>
     )
 }
