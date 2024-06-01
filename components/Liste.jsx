@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { chooseCategory } from "../store/CartReducer";
 import FilterButton from "./Buttons/FilterButton";
 import ProductCard from "./Cards/ProductCard";
-import imagePath from "../imagePath";
+import { addToCart } from "../store/CartReducer";
 import CommandeModal from "./modals/CommandeModal";
 
 export default function Liste() {
@@ -17,6 +17,7 @@ export default function Liste() {
     const [find, setFind] = useState('')
     const [found, setFound] = useState([])
     const [produits, setProduits] = useState([])
+    const [cartModal, displayCartModal] = useState(false)
 
     useEffect(function () {
         fetch("http://192.168.56.1:3000/api//produits/all")
@@ -46,6 +47,7 @@ export default function Liste() {
     }
 
     const { ordered } = useSelector(state => state.cart)
+
 
     return (
         <View style={mainStyles.screen}>
@@ -100,13 +102,13 @@ export default function Liste() {
             <View style={ListStyles.list}>
                 <FlatList
                     data={produits}
-                    renderItem={({ item }) => <ProductCard title={item.title} item={item} />}
+                    renderItem={({ item }) => <ProductCard display={()=>{displayCartModal(true)}} item={item} />}
                     keyExtractor={item => item.libelle}
                     overScrollMode="never"
                 />
             </View>
             {
-                ordered.length > 0 &&
+                cartModal && 
                 <CommandeModal
                     item={ordered}
                     onDispatch={() => { dispatch(addToCart(ordered)) }}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ListOptions, ListStyles } from "../../assets/styles/styles";
 import { View, Image, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../store/CartReducer";
+import { setOrder } from "../../store/CartReducer";
 import imagePath from "../../imagePath";
 import ChooseButton from "../Buttons/ChooseButton";
 import AbortButton from "../Buttons/AbortButton";
@@ -10,20 +10,19 @@ import { formater } from "../../functions/functions"
 import { Swipeable } from "react-native-gesture-handler";
 import CommandeModal from "../modals/CommandeModal";
 
-export default function ProductCard({ item }) {
+export default function ProductCard({ item, display }) {
 
     const dispatch = useDispatch()
     const { products } = useSelector(state => state.cart)
     const actualItem = products.filter(i => i.libelle === item.libelle)
 
 
-    const [cartModal, displayCartModal] = useState(false)
-
     const modal = () => {
         dispatch(setOrder(item))
+        display()
     }
 
-    const rightOptions = ({ navigation }) => {
+    const rightOptions = () => {
         return (
             <View style={ListOptions.container}>
                 <ChooseButton
