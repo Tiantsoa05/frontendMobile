@@ -9,7 +9,8 @@ export const cartSlice = createSlice({
         totalPrice: 0,
         cartSize: 0,
         categorie: "meubles",
-        countOrder: true
+        countOrder: true,
+        ordered: []
     },
     reducers: {
 
@@ -107,6 +108,11 @@ export const cartSlice = createSlice({
 
         },
 
+        setOrder: (state, action) => {
+            state.ordered = action.payload
+            console.log(state.ordered)
+        },
+
         payOrder: (state, action) => {
 
             // model.post("/produits/payement", { data: action.payload })
@@ -143,7 +149,17 @@ export const cartSlice = createSlice({
     }
 })
 
-export const { addToCart, removeFromCart, chooseCategory, giveNumberOfOrder, orderCart, payOrder, reinitialise, setOrderCounter } = cartSlice.actions
+export const {
+    addToCart,
+    removeFromCart,
+    chooseCategory,
+    giveNumberOfOrder,
+    orderCart,
+    payOrder,
+    reinitialise,
+    setOrderCounter,
+    setOrder
+} = cartSlice.actions
 
 function calcul(products) {
     let somme = 0

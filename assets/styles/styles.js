@@ -275,12 +275,12 @@ export const ListStyles = StyleSheet.create(
 )
 
 export const ListOptions = StyleSheet.create({
-    container:{
+    container: {
         right: 0,
         width: 100,
         height: "100%",
-        justifyContent:"center",
-        alignItems:"center"
+        justifyContent: "center",
+        alignItems: "center"
     }
 })
 

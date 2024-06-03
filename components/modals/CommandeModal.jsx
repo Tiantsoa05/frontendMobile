@@ -17,28 +17,28 @@ export default function CommandeModal({ item, onDispatch, close }) {
 
     return (
         <View style={styles.container}>
-            <View style={{ display: "flex" }}>
-                <View>
+            <View style={styles.header}>
+                <View style={{ left: 25 }}>
                     <TouchableOpacity
                         onPress={() => { close() }}
                     >
-                        <FontAwesome5Icon name="arrow-left" />
+                        <FontAwesome5Icon name="arrow-left" size={25} color={"blue"} />
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Text style={{ fontSize: 22 }}>{item.libelle}</Text>
+                    <Text style={{ fontSize: 22, textAlign: "center", width: 400, left: -17 }}>{item.libelle}</Text>
                 </View>
             </View>
             <Image
                 source={
                     imagePath[item.libelle.split(' ').join("_").toLocaleLowerCase()]
                 }
-                style={{ width: 400, height: 350, resizeMode: "cover" }}
+                style={{ width: 400, height: 350, resizeMode: "cover", top: 25 }}
             />
-            <View style={{ top: 10 }}>
-                <Text>{item.description}</Text>
-                <Text>{formater(item.prix)}</Text>
-                <View>
+            <View style={styles.description}>
+                <Text style={styles.descText}>{item.description}</Text>
+                <Text style={styles.prix}>{formater(item.prix)} Ar</Text>
+                <View style={styles.command}>
                     <DynamicButton
                         onPress={onDispatch}
                     >
@@ -64,5 +64,28 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
-
+    header: {
+        width: "100%",
+        flex: 1,
+        flexDirection: "row",
+        position: "absolute",
+        top: 90,
+        alignItems: "center"
+    },
+    description: {
+        top: 45,
+        left: 0,
+    },
+    descText: {
+        fontSize: 18,
+        width: 400
+    },
+    prix: {
+        fontSize: 18,
+        fontWeight: "bold",
+        top: 8
+    },
+    command:{
+        top: 20,
+    }
 })
