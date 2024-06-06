@@ -50,6 +50,15 @@ export default function CommandeModal({ item, onDispatch, close }) {
                     </DynamicButton>
                 </View>
             </View>
+            <View style={styles.validButton}>
+                <TouchableOpacity
+                    onPress={}        
+                >
+                    <View>
+                        <Text>Confirmer</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
