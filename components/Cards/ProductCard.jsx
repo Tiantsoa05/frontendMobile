@@ -36,7 +36,7 @@ export default function ProductCard({ item, display }) {
     }
 
     return (
-        <Swipeable
+        < Swipeable
             renderRightActions={rightOptions}
         >
             <View style={ListStyles.card}>
@@ -54,6 +54,6 @@ export default function ProductCard({ item, display }) {
                     <Text style={ListStyles.price}>Prix: {formater(item.prix)} Ar</Text>
                 </View>
             </View>
-        </Swipeable>
+        </Swipeable >
     )
 }

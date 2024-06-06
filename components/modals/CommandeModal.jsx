@@ -26,7 +26,7 @@ export default function CommandeModal({ item, onDispatch, close }) {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Text style={{ fontSize: 22, textAlign: "center", width: 400, left: -17 }}>{item.libelle}</Text>
+                    <Text style={{ fontSize: 22, textAlign: "center", width: 400, left: -17, zIndex: -5 }}>{item.libelle}</Text>
                 </View>
             </View>
             <Image
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         top: 8
     },
-    command:{
+    command: {
         top: 20,
     }
 })

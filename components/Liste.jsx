@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ScrollView, TextInput, FlatList } from "react-native";
+import { Text, View, ScrollView, TextInput, FlatList, StyleSheet } from "react-native";
 import { ListStyles, PayStyles, mainStyles } from "../assets/styles/styles";
 import Header from "./Header/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import FilterButton from "./Buttons/FilterButton";
 import ProductCard from "./Cards/ProductCard";
 import { addToCart } from "../store/CartReducer";
 import CommandeModal from "./modals/CommandeModal";
+import { PanierStyles } from "../assets/styles/styles";
 
 export default function Liste() {
     const [container, setContainer] = useState([])
@@ -36,7 +37,17 @@ export default function Liste() {
 
     const search = (payload) => {
         setFind(payload)
-        setFound(container.find(item => item.libelle.toLowerCase().includes(payload.toLowerCase())))
+        if (payload !== "") {
+            const f = container.find(item => item.libelle.toLowerCase().includes(payload.toLowerCase()))
+            if (f !== undefined) {
+                setProduits([f])
+            } else {
+                setProduits([])
+            }
+            console.log(container.find(item => item.libelle.toLowerCase().includes(payload.toLowerCase())))
+        } else {
+            setProduits(container)
+        }
     }
 
     const selectCategory = (categorie) => {
@@ -75,7 +86,8 @@ export default function Liste() {
             <View style={ListStyles.filters}>
                 <View style={ListStyles.filterButtons}>
                     <ScrollView
-                        style={{ flex: 1, width: 600, height: 50 }}
+                        overScrollMode="false"
+                        style={styles.scroll}
                         horizontal={true}
                     >
                         {
@@ -100,13 +112,18 @@ export default function Liste() {
             </View>
 
             <View style={ListStyles.list}>
-                <FlatList
-                    data={produits}
-                    renderItem={({ item }) => <ProductCard display={() => { displayCartModal(true) }} item={item} />}
-                    keyExtractor={item => item.libelle}
-                    overScrollMode="never"
-                />
+                {
+                    produits !== undefined ?
+                        <FlatList
+                            data={produits}
+                            renderItem={({ item }) => <ProductCard display={() => { displayCartModal(true) }} item={item} />}
+                            keyExtractor={item => item.libelle}
+                            overScrollMode="never"
+                        /> :
+                        <Text style={{fontSize:50}}>Panier vide</Text>
+                }
             </View>
+
             {
                 cartModal &&
                 <CommandeModal
@@ -118,3 +135,12 @@ export default function Liste() {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    scroll: {
+        flex: 1,
+        width: 200,
+        height: 75,
+        paddingTop: 18
+    }
+})
